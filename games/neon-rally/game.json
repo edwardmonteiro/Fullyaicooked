@@ -1,0 +1,13 @@
+{
+  "id": "neon-rally",
+  "title": "Neon Rally",
+  "description": "Thread the traffic. Chase the lights. Keep your streak alive.",
+  "category": "Racing",
+  "color": "#db9cff",
+  "controls": "Drag left or right, or use arrow keys. Dodge traffic and collect golden rings.",
+  "orientation": "portrait",
+  "audience": "general",
+  "entry": "index.html",
+  "cover": "cover.webp",
+  "order": 1
+}

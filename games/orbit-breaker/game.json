@@ -1,0 +1,13 @@
+{
+  "id": "orbit-breaker",
+  "title": "Orbit Breaker",
+  "description": "Find your angle. Clear the constellation, one brick at a time.",
+  "category": "Arcade",
+  "color": "#61e6d0",
+  "controls": "Drag to move the paddle, or use arrow keys. Tap or press Space to launch.",
+  "orientation": "portrait",
+  "audience": "general",
+  "entry": "index.html",
+  "cover": "cover.webp",
+  "order": 2
+}

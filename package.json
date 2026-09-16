@@ -1,0 +1,13 @@
+{
+  "name": "fullyaicooked-arcade",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "android:sync": "node scripts/build.mjs --android",
+    "check": "node --check web/app.js && node --check web/ads.js && node --check games/shared/engine.js && npm test"
+  },
+  "engines": { "node": ">=20" }
+}

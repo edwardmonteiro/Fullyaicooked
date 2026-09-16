@@ -1,0 +1,13 @@
+{
+  "id": "stack-circuit",
+  "title": "Stack Circuit",
+  "description": "One tap. Perfect timing. How high can you take it?",
+  "category": "Puzzle",
+  "color": "#d9ff59",
+  "controls": "Tap the game or press Space to drop each moving block. Align it with the stack below.",
+  "orientation": "portrait",
+  "audience": "general",
+  "entry": "index.html",
+  "cover": "cover.webp",
+  "order": 3
+}

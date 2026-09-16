@@ -2,7 +2,7 @@
 
 A free HTML5 arcade marketplace and an installable Android app.
 
-The original repository contained only this README and its Apache 2.0 license. This implementation adds three original starter games: **Neon Rally**, **Orbit Breaker**, and **Stack Circuit**. Cover illustrations are promotional art; gameplay is an original lightweight canvas implementation.
+The original repository contained only this README and its Apache 2.0 license. This implementation includes six original games: **Neon Rally**, **Orbit Breaker**, **Stack Circuit**, **Triathlon Sprint**, **Bike Rider**, and **Pocket Golf**. Cover illustrations are promotional art; gameplay uses lightweight canvas rendering with original sports sprites.
 
 ## Included
 
@@ -39,6 +39,14 @@ The APK is `android/app/build/outputs/apk/debug/app-debug.apk`. The included Git
 To include a download in the website, copy the finished APK to `releases/fully-ai-cooked.apk`, then run `npm run build`. APK files are excluded from Git; distribution artifacts are published separately.
 
 The preview requires Android 6.0+ and a current compatible Android System WebView. It does not request microphone, camera, location, contacts, or file-storage permission. Internet access is used for advertising when available; the included games work offline.
+
+## Sports collection — v1.1.0
+
+- **Triathlon Sprint:** swim, cycle, and run three 400 m stages, managing stamina and avoiding markers.
+- **Bike Rider:** a finite alpine bicycle trail with jumping, terrain-following landings, rocks, and 18 collectible rings.
+- **Pocket Golf:** six hand-built courses, drag-to-putt or keyboard aiming, wall rebounds, sand, water penalties, and a scorecard. A hole is picked up after at least eight strokes if the ball has not reached the cup.
+
+All three support touch and keyboard input, pause automatically when backgrounded, save high scores locally, and work offline in the APK. Each reports one round completion at the finish screen for the existing capped advertising flow.
 
 ## Add games and earn revenue
 

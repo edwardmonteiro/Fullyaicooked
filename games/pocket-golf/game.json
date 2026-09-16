@@ -1,0 +1,13 @@
+{
+  "id": "pocket-golf",
+  "title": "Pocket Golf",
+  "description": "Six little greens. Big bank shots. Aim, putt, and find your way around the water.",
+  "category": "Sports",
+  "color": "#cafd84",
+  "controls": "Drag backwards anywhere and release to putt. Or use left/right to aim, up/down for power, and Space to putt. Water adds one stroke.",
+  "orientation": "portrait",
+  "audience": "general",
+  "entry": "index.html",
+  "cover": "cover.webp",
+  "order": 6
+}

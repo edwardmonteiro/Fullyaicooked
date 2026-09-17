@@ -23,5 +23,5 @@ Browser checks are short interaction sessions, not human playthroughs of every c
 ## Remaining release limits
 
 - Campaign progress is local to one browser or app installation.
-- The APK is a signed debug preview, not a Play Store release.
+- The APK is a signed debug preview, not a Play Store release. This delivery uses a new debug signing certificate because the previous temporary key was unavailable. Existing installations of the earlier preview must be uninstalled before installing this APK; uninstalling clears their local app progress. Keep the preview signing key for subsequent builds to avoid repeating that migration.
 - Advertising remains in test mode; test impressions do not produce revenue.

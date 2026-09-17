@@ -1,4 +1,4 @@
-# Gameplay verification — Championship update
+# Gameplay verification
 
 ## Rules and completion
 
@@ -25,3 +25,15 @@ Browser checks are short interaction sessions, not human playthroughs of every c
 - Campaign progress is local to one browser or app installation.
 - The APK is a signed debug preview, not a Play Store release. This delivery uses a new debug signing certificate because the previous temporary key was unavailable. Existing installations of the earlier preview must be uninstalled before installing this APK; uninstalling clears their local app progress. Keep the preview signing key for subsequent builds to avoid repeating that migration.
 - Advertising remains in test mode; test impressions do not produce revenue.
+
+## 2600 Tributes — v1.3.0
+
+The full check now passes 36 tests, including 11 new model tests. Reproducible controllers in `tests/fixtures/retro-routes.mjs` send normal directional/action inputs to the unmodified models. They clear six river bridges with three jets intact, qualify through two complete Enduro days, and traverse the first vine, crocodile and opening-sand rooms to collect the first Pitfall treasure without dying. Other tests cover repeated life loss, checkpoint respawns, fuel use/destruction, extra lives, gas release/braking, weather, reversal of overtakes, ladders, tunnel wrapping, the treasure count and time expiry.
+
+The tributes intentionally use original river routes and jungle arrangements. Enduro days last 120 seconds. Movement, collision boxes, sprite bitmaps and sound synthesis were independently implemented. The river alternates mirrored authored routes and narrows over successive bridges; it does not reproduce the original ROM's procedural generator. Pitfall's 255-room layout is authored from repeatable patterns and does not reproduce its cartridge map. These are gameplay tributes, not emulation or frame-perfect ports. No ROMs, extracted graphics or original recordings are bundled.
+
+Historical reference: [the original Enduro manual](https://atariage.com/manual_html_page.php?SoftwareLabelID=163) supports the 200/300 daily passing quotas, maintaining speed after releasing the accelerator, braking, ice, night and fog. The independent implementations and explicit differences are the basis for the remaining behavior descriptions.
+
+The v1.3.0 APK preserves the v1.2.0 preview signing certificate and bumps the version code to 4. Earlier v1.1.0 installations still require the signing migration described above. Physical Android touch/gamepad testing and a full twenty-minute, 32-treasure human playthrough remain outstanding.
+
+Browser QA for the tributes covered Chrome at 1363 × 941 and a 390 × 780 iframe viewport: marketplace launch, intro-to-game transition, pixel playfields, River Raid pause/resume controls, Enduro acceleration (0 → 35 km/h) and maintained speed after release, and Pitfall directional/jump button activation with the player visibly airborne. No relevant application errors or framework overlays were observed. Browser interactions are sampled checks, not complete human runs; real multi-touch and physical gamepad input remain untested.

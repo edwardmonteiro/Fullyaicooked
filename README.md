@@ -2,7 +2,7 @@
 
 A free HTML5 arcade marketplace and an installable Android app.
 
-The original repository contained only this README and its Apache 2.0 license. This implementation includes six original games: **Neon Rally**, **Orbit Breaker**, **Stack Circuit**, **Triathlon Sprint**, **Bike Rider**, and **Pocket Golf**. Cover illustrations are promotional art; gameplay uses canvas rendering, original vehicle and athlete sprites, and illustrated environments.
+The original repository contained only this README and its Apache 2.0 license. The catalog now contains nine games. The six original games are: **Neon Rally**, **Orbit Breaker**, **Stack Circuit**, **Triathlon Sprint**, **Bike Rider**, and **Pocket Golf**. They use illustrated environments and original sprites. Three additional HTML5 tributes revisit River Raid, Enduro and Pitfall with independently written code, bitmap artwork and level layouts.
 
 ## Included
 
@@ -39,6 +39,20 @@ The APK is `android/app/build/outputs/apk/debug/app-debug.apk`. The included Git
 To include a download in the website, copy the finished APK to `releases/fully-ai-cooked.apk`, then run `npm run build`. APK files are excluded from Git; distribution artifacts are published separately.
 
 The preview requires Android 6.0+ and a current compatible Android System WebView. It does not request microphone, camera, location, contacts, or file-storage permission. Internet access is used for advertising when available; the included games work offline.
+
+## 2600 Tributes — v1.3.0
+
+Three independent HTML5 recreations join the original six games. These preserve selected gameplay rules and the broad-pixel, 4:3 presentation of Atari 2600 games. They have new code, artwork, maps, timing and synthesized audio; they do not include ROMs or claim cartridge-level emulation fidelity.
+
+| Tribute | Rules and progression |
+| --- | --- |
+| River Raid | Fuel depots, speed control, guided single missiles, ships/helicopters/jets, islands, destructible bridges, three jets, bridge respawns, extra jets at 10,000 points |
+| Enduro | Pass 200 cars on day one and 300 on subsequent days; maintain speed when releasing gas; brake, steer through bends, endure ice, sunset, darkness and fog; survive until dawn |
+| Pitfall | Twenty-minute expedition, three lives, 255 connected screens, 32 treasures, vines with jump-to-grab/release, crocodile jaws, opening sand, rolling logs, fire, snakes, ladders and tunnel shortcuts |
+
+All three use the shared `games/shared/retro/` runtime with keyboard, touch and gamepad input, pause/resume, optional CRT scanlines, synthesized sound, local high scores and one advertising event only after game over. Directional and action buttons stay outside the playfield. The new covers capture actual rendered game states.
+
+The preview APK retains the v1.2.0 signing certificate, so v1.2.0 can be upgraded without removing its local records. The earlier v1.1.0 signing migration still applies to installations of that older preview. See [gameplay verification](docs/GAMEPLAY_QA.md) for test coverage and known differences from the cartridges.
 
 ## Championship update — v1.2.0
 

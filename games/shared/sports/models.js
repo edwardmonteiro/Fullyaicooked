@@ -118,7 +118,10 @@ export const COURSES = [
   { name: 'Sandy shortcut', par: 3, tee: [80, 510], cup: [335, 145], walls: [{ x: 195, y: 340, w: 180, h: 18 }], sand: [{ x: 48, y: 220, w: 125, h: 95 }], water: [] },
   { name: 'Water crossing', par: 4, tee: [90, 515], cup: [315, 145], walls: [{ x: 24, y: 200, w: 160, h: 18 }], sand: [], water: [{ x: 108, y: 295, w: 210, h: 64 }] },
   { name: 'Switchback', par: 5, tee: [75, 520], cup: [325, 140], walls: [{ x: 24, y: 400, w: 252, h: 18 }, { x: 142, y: 240, w: 254, h: 18 }], sand: [{ x: 288, y: 320, w: 91, h: 65 }], water: [] },
-  { name: 'The island green', par: 4, tee: [82, 515], cup: [327, 145], walls: [{ x: 24, y: 220, w: 218, h: 18 }], sand: [{ x: 49, y: 110, w: 118, h: 85 }], water: [{ x: 153, y: 340, w: 228, h: 63 }] }
+  { name: 'The island green', par: 4, tee: [82, 515], cup: [327, 145], walls: [{ x: 24, y: 220, w: 218, h: 18 }], sand: [{ x: 49, y: 110, w: 118, h: 85 }], water: [{ x: 153, y: 340, w: 228, h: 63 }] },
+  { name: 'Clockwork', par: 3, tee: [210, 520], cup: [210, 145], walls: [{ x: 24, y: 300, w: 83, h: 16 }, { x: 313, y: 300, w: 83, h: 16 }], sand: [], water: [], gate: { x: 160, y: 300, w: 100, h: 16, travel: 48, speed: 0.9 } },
+  { name: 'Ricochet garden', par: 4, tee: [75, 515], cup: [325, 140], walls: [], sand: [{ x: 35, y: 175, w: 90, h: 70 }], water: [{ x: 184, y: 332, w: 57, h: 74 }], bumpers: [{ x: 135, y: 305, r: 24 }, { x: 292, y: 420, r: 23 }, { x: 278, y: 210, r: 24 }] },
+  { name: 'Final approach', par: 5, tee: [75, 515], cup: [330, 140], walls: [{ x: 24, y: 218, w: 95, h: 16 }], sand: [{ x: 36, y: 105, w: 99, h: 88 }], water: [{ x: 118, y: 338, w: 184, h: 64 }], gate: { x: 195, y: 245, w: 94, h: 16, travel: 60, speed: 0.8 }, bumpers: [{ x: 350, y: 460, r: 21 }] }
 ];
 const inside = (ball, rect) => ball.x > rect.x && ball.x < rect.x + rect.w && ball.y > rect.y && ball.y < rect.y + rect.h;
 function bounceRect(ball, rect) {
@@ -142,6 +145,7 @@ export class Golf extends Round {
     this.loadHole();
   }
   get course() { return COURSES[this.hole]; }
+  get walls() { const gate = this.course.gate; return gate ? [...this.course.walls, { ...gate, x: gate.x + Math.sin(this.time * gate.speed) * gate.travel, moving: true }] : this.course.walls; }
   get moving() { return Math.hypot(this.ball.vx, this.ball.vy) > 0; }
   get canShoot() { return !this.done && this.phase === 'play' && !this.moving; }
   get progress() { return (this.hole + (this.phase === 'holed' ? 1 : 0)) / COURSES.length; }
@@ -177,7 +181,7 @@ export class Golf extends Round {
       } else if (this.hole === COURSES.length - 1) {
         const totalPar = COURSES.reduce((sum, c) => sum + c.par, 0);
         const difference = this.totalStrokes - totalPar;
-        this.finish(true, `Six greens in ${this.totalStrokes} strokes (${difference > 0 ? '+' : ''}${difference} to par).`);
+        this.finish(true, `${COURSES.length} greens in ${this.totalStrokes} strokes (${difference > 0 ? '+' : ''}${difference} to par).`);
       } else { this.hole++; this.loadHole(); this.emit('stage'); }
       return;
     }
@@ -194,7 +198,15 @@ export class Golf extends Round {
     if (b.x > 396 - b.r) { b.x = 396 - b.r; b.vx = -Math.abs(b.vx) * 0.78; }
     if (b.y < 88 + b.r) { b.y = 88 + b.r; b.vy = Math.abs(b.vy) * 0.78; }
     if (b.y > 568 - b.r) { b.y = 568 - b.r; b.vy = -Math.abs(b.vy) * 0.78; }
-    for (const wall of course.walls) bounceRect(b, wall);
+    for (const wall of this.walls) bounceRect(b, wall);
+    for (const bumper of course.bumpers || []) {
+      const dx = b.x - bumper.x, dy = b.y - bumper.y, distance = Math.hypot(dx, dy), contact = b.r + bumper.r;
+      if (distance < contact && distance > 0) {
+        const nx = dx / distance, ny = dy / distance, dot = b.vx * nx + b.vy * ny;
+        b.x = bumper.x + nx * (contact + 0.05); b.y = bumper.y + ny * (contact + 0.05);
+        if (dot < 0) { b.vx -= 1.9 * dot * nx; b.vy -= 1.9 * dot * ny; }
+      }
+    }
     if (course.water.some(rect => inside(b, rect))) {
       b.vx = b.vy = 0; this.strokes++; this.totalStrokes++; this.phase = 'water'; this.timer = 0.75;
       this.notice = 'Splash! One penalty stroke'; this.emit('water'); return;
@@ -206,5 +218,13 @@ export class Golf extends Round {
       b.vx = b.vy = 0;
       if (this.strokes >= 8) this.finishHole(true);
     }
+  }
+  trajectory(vx, vy) {
+    const copy = Object.create(Golf.prototype);
+    Object.assign(copy, this, { ball: { ...this.ball }, events: [], cards: [...this.cards], done: false });
+    if (!copy.shoot(vx, vy)) return [];
+    const path = [{ x: copy.ball.x, y: copy.ball.y }];
+    for (let i = 0; i < 46 && copy.phase === 'play' && copy.moving; i++) { copy.time += 0.035; for (let s = 0; s < 7 && copy.phase === 'play'; s++) copy.step(0.005); if (i % 2 === 0) path.push({ x: copy.ball.x, y: copy.ball.y }); }
+    return path;
   }
 }

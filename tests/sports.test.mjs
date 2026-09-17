@@ -61,14 +61,14 @@ test('water adds exactly one penalty and returns the ball to the pre-shot positi
   assert.equal(game.strokes, 2); assert.equal(game.totalStrokes, 2); assert.equal(game.canShoot, true);
   assert.equal(game.ball.x, 210); assert.equal(game.ball.y, 400);
 });
-test('golf advances through six cups and freezes the final score', () => {
+test('golf advances through nine cups and freezes the final score', () => {
   const game = new Golf();
-  for (let hole = 0; hole < 6; hole++) {
+  for (let hole = 0; hole < COURSES.length; hole++) {
     assert.equal(game.hole, hole);
     Object.assign(game.ball, { x: COURSES[hole].cup[0], y: COURSES[hole].cup[1] + 22 });
     game.shoot(0, -60); advance(game, 2.5);
   }
-  assert.equal(game.done, true); assert.equal(game.won, true); assert.equal(game.cards.length, 6); assert.equal(game.totalStrokes, 6);
+  assert.equal(game.done, true); assert.equal(game.won, true); assert.equal(game.cards.length, COURSES.length); assert.equal(game.totalStrokes, COURSES.length);
   const score = game.score; game.tick(10); assert.equal(game.score, score);
 });
 test('golf picks up an unfinished hole after eight strokes', () => {

@@ -2,12 +2,12 @@
 
 A free HTML5 arcade marketplace and an installable Android app.
 
-The original repository contained only this README and its Apache 2.0 license. This implementation includes six original games: **Neon Rally**, **Orbit Breaker**, **Stack Circuit**, **Triathlon Sprint**, **Bike Rider**, and **Pocket Golf**. Cover illustrations are promotional art; gameplay uses lightweight canvas rendering with original sports sprites.
+The original repository contained only this README and its Apache 2.0 license. This implementation includes six original games: **Neon Rally**, **Orbit Breaker**, **Stack Circuit**, **Triathlon Sprint**, **Bike Rider**, and **Pocket Golf**. Cover illustrations are promotional art; gameplay uses canvas rendering, original vehicle and athlete sprites, and illustrated environments.
 
 ## Included
 
 - Responsive dark marketplace with category filters, search, favorites, and recently played games.
-- Fullscreen game player, touch and keyboard controls, local high scores, pause/resume, and optional synthesized sound.
+- Fullscreen game player, touch and keyboard controls, saved campaign medals, local high scores, pause/resume, and optional synthesized music and effects.
 - Automatic discovery of repository game bundles and standalone HTML games.
 - Native Android WebView shell with bundled offline games, safe system-bar insets, native Back behavior, and no JavaScript-to-Java object bridge.
 - AdMob test banner and capped interstitial integration, plus UMP consent for live mode.
@@ -16,7 +16,7 @@ The original repository contained only this README and its Apache 2.0 license. T
 
 ## Run and build
 
-Node.js 20+; no npm dependencies are required for the website.
+Node.js 20.19+ or 22.12+. The production website has no runtime npm dependencies. Install development dependencies with `npm ci` to use the optional Vite preview (`npm run dev`, after building).
 
 ```sh
 npm run check
@@ -40,13 +40,24 @@ To include a download in the website, copy the finished APK to `releases/fully-a
 
 The preview requires Android 6.0+ and a current compatible Android System WebView. It does not request microphone, camera, location, contacts, or file-storage permission. Internet access is used for advertising when available; the included games work offline.
 
-## Sports collection — v1.1.0
+## Championship update — v1.2.0
 
-- **Triathlon Sprint:** swim, cycle, and run three 400 m stages, managing stamina and avoiding markers.
-- **Bike Rider:** a finite alpine bicycle trail with jumping, terrain-following landings, rocks, and 18 collectible rings.
-- **Pocket Golf:** six hand-built courses, drag-to-putt or keyboard aiming, wall rebounds, sand, water penalties, and a scorecard. A hole is picked up after at least eight strokes if the ball has not reached the cup.
+The six games now share a campaign menu, progression, medal awards, countdowns, pause/resume, and a control deck outside the playfield. Win an event to unlock the next one. Progress is stored on the current browser/device and does not sync between installations.
 
-All three support touch and keyboard input, pause automatically when backgrounded, save high scores locally, and work offline in the APK. Each reports one round completion at the finish screen for the existing capped advertising flow.
+| Game | Campaign | Gameplay |
+| --- | --- | --- |
+| Neon Rally | 4 circuits | Curved roads, braking, nitro, close calls, moving traffic, timed checkpoints |
+| Orbit Breaker | 5 sectors | Armored targets, explosive blocks, paddle aiming, wide paddle, multiball, shields |
+| Stack Circuit | 4 towers | Falling blocks, width trimming, crosswind, limited Focus, perfect-drop restoration |
+| Triathlon Sprint | 3 championships | Four rivals, swimming currents, stamina, drafting, three disciplines, top-three qualification |
+| Bike Rider | 3 trails | Buffered jumps, air rotation, slope-sensitive landings, marked gaps, checkpoint respawns |
+| Pocket Golf | 3 cups / 9 holes | Physics-based aiming guide, bank shots, sand, water, moving gates, circular bumpers |
+
+All six support touch and keyboard input and work offline in the APK. Touch controls support independent steering and action pointers. Golf caps each hole at eight strokes; picking up an unfinished hole prevents cup qualification. The moving-gate trajectory is a short prediction at the current aim and release time.
+
+`games/shared/runtime.js` runs the games, `championship.js` contains campaign models, `championship-render.js` and `sports/render.js` draw them, and `progress.js` validates local saves. The earlier engines remain as compatibility/reference code; all six entries use the new runtime.
+
+`npm run check` verifies syntax and runs the gameplay tests, including complete unmodified physics routes through the campaigns, input effects, collision rules, and saved progress. See [Gameplay verification](docs/GAMEPLAY_QA.md) for verification scope and limitations. Each completed event sends one message to the existing capped advertising flow.
 
 ## Add games and earn revenue
 

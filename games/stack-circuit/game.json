@@ -1,10 +1,10 @@
 {
   "id": "stack-circuit",
   "title": "Stack Circuit",
-  "description": "One tap. Perfect timing. How high can you take it?",
+  "description": "Four skyline challenges. Fight the wind, slow time, and build a perfect tower.",
   "category": "Puzzle",
   "color": "#d9ff59",
-  "controls": "Tap the game or press Space to drop each moving block. Align it with the stack below.",
+  "controls": "Space drop · Hold ↓ for Focus",
   "orientation": "portrait",
   "audience": "general",
   "entry": "index.html",

@@ -1,10 +1,10 @@
 {
   "id": "triathlon-sprint",
   "title": "Triathlon Sprint",
-  "description": "Swim, cycle, and run a coastal race. Find your pace and save energy for the finish.",
+  "description": "Three championships. Outpace four rivals across the swim, cycle, and final run.",
   "category": "Sports",
   "color": "#79e8e0",
-  "controls": "Drag or use left/right arrows to steer. Hold Pace or Space to sprint. Avoid orange markers and collect energy rings.",
+  "controls": "Drag or ← → steer · Space pace · Slipstream saves stamina",
   "orientation": "portrait",
   "audience": "general",
   "entry": "index.html",

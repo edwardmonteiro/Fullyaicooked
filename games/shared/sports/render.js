@@ -71,6 +71,17 @@ export class Renderer {
       if (o.pickup) { this.circle(o.x, o.y, 19, '#132f36c9'); this.ring(o.x, o.y, 12); this.text('+', o.x, o.y + 5, 17, '#fff9cf', 'center'); }
       else { this.sprite(6, o.x - 21, o.y - 21, 42, 42); }
     }
+    for (const rival of m.rivals || []) {
+      const y = 496 - (rival.distance - m.totalDistance) * 8.2;
+      if (y < 90 || y > 640) continue;
+      c.save(); c.filter = `hue-rotate(${70 + rival.index * 60}deg)`;
+      this.sprite(swim ? Math.floor(m.time * 5 + rival.index) % 2 : cycle ? 2 : 3, rival.x - 17, y - 45, 34, 90); c.restore();
+      this.box(rival.x - 11, y - 64, 22, 16, '#0a263bd9', 5); this.text(String(rival.index + 1), rival.x, y - 52, 10, '#f2efe0', 'center');
+    }
+    if (m.drafting) {
+      c.fillStyle = '#d9ff8830'; c.beginPath(); c.moveTo(m.x - 26, 445); c.lineTo(m.x - 15, 375); c.lineTo(m.x + 15, 375); c.lineTo(m.x + 26, 445); c.fill();
+      this.text('SLIPSTREAM', m.x, 363, 11, '#e6ffa6', 'center');
+    }
     c.save();
     if (m.invincible > 0 && Math.floor(m.invincible * 12) % 2) c.globalAlpha = 0.4;
     if (m.boosting) { this.circle(m.x, 500, 34, '#d9ff8822'); this.circle(m.x, 500, 25, '#d9ff8822'); }
@@ -98,31 +109,41 @@ export class Renderer {
       c.drawImage(this.background, -(w - 420) * 0.52 - Math.sin(m.x / 3000) * 70, 0, w, 600);
     }
     // This contour is also the collision surface: the wheels always land on it.
-    const groundPath = () => {
-      c.beginPath(); c.moveTo(-5, terrainHeight(m.scroll - 5));
-      for (let x = 0; x <= 430; x += 5) c.lineTo(x, terrainHeight(m.scroll + x));
-    };
-    groundPath(); c.lineTo(430, 600); c.lineTo(-5, 600); c.closePath(); c.fillStyle = '#493e37'; c.fill();
-    groundPath(); c.strokeStyle = '#94b790'; c.lineWidth = 17; c.stroke();
-    groundPath(); c.strokeStyle = '#e6ba88'; c.lineWidth = 8; c.stroke();
+    const ground = x => m.ground ? m.ground(x) : terrainHeight(x);
+    const cuts = [[-5, 430]];
+    for (const [a, b] of m.gaps || []) {
+      const start = a - m.scroll, end = b - m.scroll;
+      for (let i = cuts.length - 1; i >= 0; i--) { const [l,r] = cuts[i]; if (start < r && end > l) { cuts.splice(i, 1); if (start > l) cuts.push([l,start]); if (end < r) cuts.push([end,r]); } }
+      if (start > -40 && start < 460) { this.box(start - 47, ground(a) - 54, 35, 26, '#f6d799', 4); this.text('↗', start - 30, ground(a) - 35, 22, '#563d35', 'center'); }
+    }
+    for (const [left,right] of cuts) {
+      const groundPath = () => { c.beginPath(); c.moveTo(left, ground(m.scroll + left)); for (let x = left + 4; x < right; x += 4) c.lineTo(x, ground(m.scroll + x)); c.lineTo(right, ground(m.scroll + right)); };
+      groundPath(); c.lineTo(right, 680); c.lineTo(left, 680); c.closePath(); c.fillStyle = '#493e37'; c.fill();
+      groundPath(); c.strokeStyle = '#94b790'; c.lineWidth = 14; c.stroke();
+      groundPath(); c.strokeStyle = '#e6ba88'; c.lineWidth = 6; c.stroke();
+    }
     for (let wx = Math.floor(m.scroll / 70) * 70; wx < m.scroll + 450; wx += 70) {
-      this.box(wx - m.scroll + 17, terrainHeight(wx) + 40 + Math.sin(wx) * 12, 12, 3, '#786151', 1);
+      if (!m.gap?.(wx)) this.box(wx - m.scroll + 17, ground(wx) + 40 + Math.sin(wx) * 12, 12, 3, '#786151', 1);
     }
     for (const ring of m.rings) { const x = ring.x - m.scroll; if (!ring.hit && x > -25 && x < 445) this.ring(x, ring.y, 11); }
     for (const rock of m.obstacles) {
       const x = rock.x - m.scroll; if (x < -60 || x > 480) continue;
-      c.save(); c.globalAlpha = rock.hit ? 0.45 : 1; this.sprite(7, x - rock.w / 2, terrainHeight(rock.x) - rock.h, rock.w, rock.h); c.restore();
+      c.save(); c.globalAlpha = rock.hit ? 0.45 : 1; this.sprite(7, x - rock.w / 2, ground(rock.x) - rock.h, rock.w, rock.h); c.restore();
     }
     const finish = m.finishX - m.scroll;
     if (finish < 450) {
-      const y = terrainHeight(m.finishX);
+      const y = ground(m.finishX);
       c.fillStyle = '#f1ebd0'; c.fillRect(finish - 2, y - 130, 4, 130);
       for (let row = 0; row < 3; row++) for (let col = 0; col < 5; col++) { c.fillStyle = (row + col) % 2 ? '#163738' : '#faf3de'; c.fillRect(finish + col * 10, y - 130 + row * 10, 10, 10); }
     }
-    c.save(); c.translate(110, m.y); c.rotate(m.angle);
+    if (m.nextCheckpoint) {
+      const x = m.nextCheckpoint - m.scroll, y = ground(m.nextCheckpoint);
+      if (x > -30 && x < 445 && !m.gap(m.nextCheckpoint)) { this.box(x, y - 90, 3, 90, '#eff9ce', 1); this.box(x + 3, y - 90, 38, 23, '#d9ff88', 2); this.text('SAVE', x + 21, y - 75, 9, '#18362c', 'center'); }
+    }
+    c.save(); c.translate(m.x - m.scroll, m.y); c.rotate(m.angle);
     if (m.invincible > 0 && Math.floor(m.invincible * 12) % 2) c.globalAlpha = 0.4;
     this.sprite(m.grounded ? 4 : 5, -52, -87, 104, 87); c.restore();
-    this.hud('ALPINE TRAIL', `${Math.min(100, Math.floor(m.progress * 100))}%  ·  ${m.coins} rings  ·  ${m.time.toFixed(1)} s`, m.progress, m.hearts);
+    this.hud(['ALPINE ROOTS','CANYON GAPS','SUMMIT TRIAL'][m.level || 0], `${Math.min(100, Math.floor(m.progress * 100))}%  ·  ${m.coins} rings  ·  ${m.time.toFixed(1)} s`, m.progress, m.hearts);
     this.box(116, 550, 188, 32, '#092b30e8', 16);
     this.text(`${Math.round(m.speed / 6)} km/h   ·   ${m.grounded ? 'ON THE TRAIL' : 'AIR TIME'}`, 210, 571, 11, '#e7f3d6', 'center');
   }
@@ -144,22 +165,23 @@ export class Renderer {
         const offset = Math.sin(m.time * 2 + x) * 3; c.beginPath(); c.moveTo(x + offset, y); c.lineTo(x + 13 + offset, y); c.stroke();
       }
     }
-    for (const wall of course.walls) {
+    for (const wall of m.walls || course.walls) {
       this.box(wall.x, wall.y + 3, wall.w, wall.h, '#123b30aa', 2);
-      this.box(wall.x, wall.y, wall.w, wall.h, '#ede0b9', 2);
+      this.box(wall.x, wall.y, wall.w, wall.h, wall.moving ? '#ffb28b' : '#ede0b9', 2);
       c.fillStyle = '#fff1cc'; c.fillRect(wall.x + 3, wall.y + 2, wall.w - 6, 3);
     }
+    for (const bumper of course.bumpers || []) { this.circle(bumper.x + 2, bumper.y + 3, bumper.r + 2, '#10362b66'); this.circle(bumper.x, bumper.y, bumper.r, '#f1d5a1'); this.circle(bumper.x, bumper.y, bumper.r - 5, '#c37669'); this.circle(bumper.x - 4, bumper.y - 4, 4, '#f7b19c'); }
     const [cx, cy] = course.cup;
     this.circle(cx, cy, 14, '#8acb8f'); this.circle(cx, cy, 10, '#123b30'); this.circle(cx, cy + 2, 6, '#091e1a');
     c.strokeStyle = '#fff0cb'; c.lineWidth = 2.5; c.beginPath(); c.moveTo(cx, cy); c.lineTo(cx, cy - 50); c.stroke();
     c.fillStyle = '#ff936f'; c.beginPath(); c.moveTo(cx, cy - 50); c.lineTo(cx + 25, cy - 40); c.lineTo(cx, cy - 30); c.closePath(); c.fill();
     this.text(String(m.hole + 1), cx + 9, cy - 37, 10, '#572919', 'center', 700);
     if (m.canShoot && aim) {
-      const power = Math.hypot(aim.vx, aim.vy), length = Math.min(135, power * 0.35), ux = aim.vx / (power || 1), uy = aim.vy / (power || 1);
-      c.strokeStyle = '#fff3b4'; c.lineWidth = 3; c.setLineDash([6, 7]); c.beginPath(); c.moveTo(ball.x, ball.y); c.lineTo(ball.x + ux * length, ball.y + uy * length); c.stroke(); c.setLineDash([]);
-      c.save(); c.translate(ball.x + ux * length, ball.y + uy * length); c.rotate(Math.atan2(uy, ux));
-      c.fillStyle = '#fff3b4'; c.beginPath(); c.moveTo(7, 0); c.lineTo(-4, -5); c.lineTo(-4, 5); c.closePath(); c.fill(); c.restore();
+      const key = `${m.hole}:${ball.x.toFixed(1)}:${ball.y.toFixed(1)}:${aim.vx.toFixed(0)}:${aim.vy.toFixed(0)}:${course.gate ? Math.floor(m.time * 10) : 0}`;
+      if (this.guideKey !== key) { this.guideKey = key; this.guide = m.trajectory(aim.vx, aim.vy); }
+      (this.guide || []).forEach((point, i, points) => { c.globalAlpha = .9 - i / points.length * .6; this.circle(point.x, point.y, 2.5, '#fff3b4'); }); c.globalAlpha = 1;
     }
+    (m.shotTrail || []).forEach((point, i, points) => this.circle(point.x, point.y, 2, `rgba(255,246,209,${i / points.length * .4})`));
     if (m.phase !== 'water' && m.phase !== 'holed') {
       this.circle(ball.x + 2, ball.y + 3, 8, '#133e3866'); this.circle(ball.x, ball.y, 8, '#fff9df'); this.circle(ball.x - 2.2, ball.y - 2.6, 2.5, '#ffffff');
     }

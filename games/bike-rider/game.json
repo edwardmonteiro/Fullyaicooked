@@ -1,10 +1,10 @@
 {
   "id": "bike-rider",
   "title": "Bike Rider",
-  "description": "Follow the alpine trail. Jump rocks, catch golden rings, and ride all the way home.",
+  "description": "Three mountain trails. Clear gaps, control your landing, and chase clean runs.",
   "category": "Sports",
   "color": "#ffb991",
-  "controls": "Tap Jump, Space, or up arrow to jump. Hold Pedal or right arrow for speed. Clear rocks and reach the finish flag.",
+  "controls": "Space jump · ↑ pedal · ← → lean · Land with level wheels",
   "orientation": "portrait",
   "audience": "general",
   "entry": "index.html",

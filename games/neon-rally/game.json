@@ -1,10 +1,10 @@
 {
   "id": "neon-rally",
   "title": "Neon Rally",
-  "description": "Thread the traffic. Chase the lights. Keep your streak alive.",
+  "description": "Four street circuits. Curve through traffic, chase checkpoints, and time your nitro.",
   "category": "Racing",
   "color": "#db9cff",
-  "controls": "Drag left or right, or use arrow keys. Dodge traffic and collect golden rings.",
+  "controls": "← → steer · Space nitro · ↓ brake",
   "orientation": "portrait",
   "audience": "general",
   "entry": "index.html",

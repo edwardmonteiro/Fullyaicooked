@@ -1,0 +1,13 @@
+{
+  "id": "paciencia",
+  "title": "Paciência",
+  "description": "Klondike com uma carta por vez, dicas, desfazer e partida salva. Jogue no seu ritmo.",
+  "category": "Clássicos de mesa",
+  "color": "#f3c46e",
+  "controls": "Toque na carta e no destino · Monte vira uma carta",
+  "orientation": "portrait",
+  "audience": "general",
+  "entry": "index.html",
+  "cover": "cover.webp",
+  "order": 13
+}

@@ -1,0 +1,13 @@
+{
+  "id": "caca-palavras",
+  "title": "Caça-palavras",
+  "description": "Seis temas em português, três níveis e letras grandes. Encontre palavras sem limite de tempo.",
+  "category": "Clássicos de mesa",
+  "color": "#f3c46e",
+  "controls": "Toque na primeira e na última letra · Ou deslize",
+  "orientation": "portrait",
+  "audience": "general",
+  "entry": "index.html",
+  "cover": "cover.webp",
+  "order": 15
+}

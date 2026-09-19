@@ -1,0 +1,13 @@
+{
+  "id": "river-raid",
+  "title": "River Raid Tribute",
+  "description": "An independent River Raid homage: fuel management, shifting riverbanks, bridges and a high-score chase.",
+  "category": "2600 Tributes",
+  "color": "#e2d879",
+  "controls": "← → steer · ↑ ↓ speed · Space fire",
+  "orientation": "landscape",
+  "audience": "general",
+  "entry": "index.html",
+  "order": 7,
+  "cover": "cover.webp"
+}

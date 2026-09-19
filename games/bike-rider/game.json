@@ -1,0 +1,13 @@
+{
+  "id": "bike-rider",
+  "title": "Bike Rider",
+  "description": "Three mountain trails. Clear gaps, control your landing, and chase clean runs.",
+  "category": "Sports",
+  "color": "#ffb991",
+  "controls": "Space jump · ↑ pedal · ← → lean · Land with level wheels",
+  "orientation": "portrait",
+  "audience": "general",
+  "entry": "index.html",
+  "cover": "cover.webp",
+  "order": 5
+}

@@ -1,0 +1,13 @@
+{
+  "id": "enduro",
+  "title": "Enduro Tribute",
+  "description": "An independent Enduro homage: pass 200 cars, then race through ice, sunset, darkness and fog.",
+  "category": "2600 Tributes",
+  "color": "#e8c89a",
+  "controls": "← → steer · ↓ brake · Space accelerate",
+  "orientation": "landscape",
+  "audience": "general",
+  "entry": "index.html",
+  "order": 8,
+  "cover": "cover.webp"
+}

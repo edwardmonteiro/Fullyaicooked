@@ -1,0 +1,13 @@
+{
+  "id": "neon-rally",
+  "title": "Neon Rally",
+  "description": "Four street circuits. Curve through traffic, chase checkpoints, and time your nitro.",
+  "category": "Racing",
+  "color": "#db9cff",
+  "controls": "← → steer · Space nitro · ↓ brake",
+  "orientation": "portrait",
+  "audience": "general",
+  "entry": "index.html",
+  "cover": "cover.webp",
+  "order": 1
+}

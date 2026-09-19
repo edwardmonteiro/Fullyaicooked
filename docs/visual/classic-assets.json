@@ -1,0 +1,33 @@
+{
+  "generation": {
+    "mode": "built-in image_gen",
+    "selectedAssets": [
+      {
+        "path": "/workspace/scratch/125980f23937/classic-art/classic-games-concept.png",
+        "dimensions": [
+          1536,
+          1024
+        ],
+        "prompt": "Use case: ui-mockup\nAsset type: one coordinated visual concept board for three Portuguese mobile HTML5 single-player tabletop games for older adults.\nPrimary request: Generate exactly ONE image containing exactly three COMPLETE mobile gameplay screens directly side by side: Paciência, Dominó, Caça-palavras. Landscape image 1536x1024; each screen occupies one third of the image, 512x1024, the same 390x780 proportional ratio. Entire screen from top navigation to bottom controls visible. Flat UI presentation without device frames, phone hardware, perspective, surrounding scene, board title, or marketing.\nStyle: mature, calm, understated premium tabletop interface; accessible typography, strong contrast, clear tap affordances. Dark forest green header and table felt #124d40, true ivory cards and domino pieces #fffaf0, warm restrained selected accents #f3c46e. Very subtle baize texture. Neutral white wordsearch letter cells on deep green. Clean readable typography; game headings 28px-equivalent; card ranks, domino pips and letters large 22–28px-equivalent; controls at least 48px-equivalent tall. No avatars, no decorative flourish, no tiny text. Each screen starts with its own game heading at top left and exact label \"Menu\" top right.\nLEFT — PACIÊNCIA: Heading \"Paciência\"; status \"Movimentos 12\". Below: stock deck and face-up waste, then four visible ace foundation placeholders in one top row. Seven overlapping card columns, clearly distinguishable and accessible; dark green subtly patterned backs and crisp ivory face-up cards with red or black suits. Gold selection border around one playable card. Credible Klondike draw-one tableau arrangement. Plenty of playing-table space, no huge empty section. Bottom control bar: \"Desfazer\", \"Dica\", \"Automático\".\nCENTER — DOMINÓ: Heading \"Dominó\"; status \"Computador · 7 peças\" above a clear connected chain of ivory domino tiles, black high-contrast pips, correctly aligned connected ends, composed compactly on the green table. Exact turn label \"Sua vez\" above player's large tiles. Player's hand occupies a substantial lower panel, large domino tiles arranged in a horizontal scroll row, with several complete tiles visible and the next one slightly peeking at right. One tile has a restrained gold outline. Bottom control bar: \"Comprar\" and \"Dica\".\nRIGHT — CAÇA-PALAVRAS: Heading \"Caça-palavras\". Below exact labels \"Jardim\" and \"2 de 6 palavras\". A large 8x8 regular square grid of neutral white letter cells, centered on deep green; letters crisp dark green, all uppercase and readable. Two found words indicated with restrained warm gold continuous highlights. Use this exact letter grid, eight rows with eight letters per row: ROSAXMLA / BJCLIRIO / HORTAZUV / MNPQRSOT / FOLHADLE / ABCDFLOR / GHIJKMSN / TUVWXYZA. Below the grid: a readable word list \"ROSA\", \"LIRIO\", \"HORTA\", \"FOLHA\", \"FLOR\", \"SOL\"; ROSA and LIRIO visually marked found, all word labels legible. Bottom controls: \"Dica\" and \"Novo jogo\".\nImportant: full gameplay view on every screen, crisp legible Portuguese labels exactly as specified. Each is a functional-looking interface design reference; production card faces, domino pips and letter grids will be implemented natively for exact rules and accessibility. No screenshots inside phones, no decorative avatars, no branding, no marketing copy, no extra visual panel, no watermarks."
+      },
+      {
+        "path": "/workspace/scratch/125980f23937/classic-art/forest-green-felt.png",
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "requestedDimensions": [
+          1024,
+          1024
+        ],
+        "prompt": "Use case: photorealistic-natural\nAsset type: production background texture for accessible Portuguese tabletop card and domino HTML5 games.\nPrimary request: Exactly one seamless, tileable square texture, 1024x1024 pixels, of subtle dark forest-green baize / card-table felt. Orthographic overhead view, surface fills every pixel edge to edge.\nColor: highly even dark forest green, target base tone #124d40 across the entire image. Tiny low-contrast textile fibers, fine short felt nap, calm smooth premium tabletop material. Texture should remain unobtrusive behind ivory cards, domino tiles and large text. Seamless edges so the texture repeats invisibly horizontally and vertically.\nLighting: perfectly uniform diffuse illumination; no directional light, no shading, no edge darkening, no hotspots.\nConstraints: texture only; no objects, no text, no letters, no numbers, no cards, no dominoes, no borders, no trim, no icons, no watermarks, no logos, no seams, no shadows, no gradients, no vignette, no folds, no stains, no visible fabric weave pattern or repeating design. Do not create a UI or a scene. Only one continuous evenly toned forest-green felt texture."
+      }
+    ],
+    "notes": "Exactly two selected visual assets. A targeted imagegen dimension-only revision was attempted but it also returned 1254x1254, so the original texture remains selected.",
+    "unusedRevisionPrompt": "Use case: precise-object-edit\nEdit target: the supplied forest-green felt background texture.\nChange only the pixel dimensions: produce this exact same seamless evenly toned overhead forest-green felt texture as a square image at EXACTLY 1024 pixels wide by 1024 pixels high.\nPreserve the forest-green color target #124d40, subtle fine fibers, uniform lighting, texture-only composition, and edge-to-edge continuous felt. No new objects, text, borders, icons, shadows, gradients, vignette, seams, stains, or pattern.\nThe output is a production background asset and must be 1024x1024 pixels."
+  },
+  "concept": "classic-games-concept.webp",
+  "runtimeTexture": "../../games/shared/classics/felt.webp",
+  "functionalGraphics": "Card ranks/suits, domino pips, word grids, connectors and controls use semantic HTML/CSS for exact rules and readable, scalable input. The generated felt is toned to the concept forest green.",
+  "covers": "Browser screenshots of real running game states, transcoded to WebP. No generated screenshot is used as the interactive game."
+}

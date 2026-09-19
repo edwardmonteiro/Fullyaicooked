@@ -2,7 +2,7 @@
 
 A free HTML5 arcade marketplace and an installable Android app.
 
-The original repository contained only this README and its Apache 2.0 license. The catalog now contains twelve games. The six original games are: **Neon Rally**, **Orbit Breaker**, **Stack Circuit**, **Triathlon Sprint**, **Bike Rider**, and **Pocket Golf**. They use illustrated environments and original sprites. Three additional HTML5 tributes revisit River Raid, Enduro and Pitfall with independently written code, bitmap artwork and level layouts.
+The original repository contained only this README and its Apache 2.0 license. The catalog now contains fifteen games. The six original games are: **Neon Rally**, **Orbit Breaker**, **Stack Circuit**, **Triathlon Sprint**, **Bike Rider**, and **Pocket Golf**. They use illustrated environments and original sprites. Three additional HTML5 tributes revisit River Raid, Enduro and Pitfall with independently written code, bitmap artwork and level layouts.
 
 ## Included
 
@@ -39,6 +39,20 @@ The APK is `android/app/build/outputs/apk/debug/app-debug.apk`. The included Git
 To include a download in the website, copy the finished APK to `releases/fully-ai-cooked.apk`, then run `npm run build`. APK files are excluded from Git; distribution artifacts are published separately.
 
 The preview requires Android 6.0+ and a current compatible Android System WebView. It does not request microphone, camera, location, contacts, or file-storage permission. Internet access is used for advertising when available; the included games work offline.
+
+## Clássicos de mesa — v1.5.0
+
+Three Portuguese single-player games add calm, readable play to the arcade. All work offline in the APK, remember unfinished rounds on the current device, and offer larger text/pieces, keyboard controls, in-game instructions and pause/resume.
+
+| Game | Rules and controls |
+| --- | --- |
+| Paciência | Standard 52-card Klondike, draw one, unlimited redeals, alternating descending columns, same-suit ascending foundations, kings in empty columns, legal-move hints, up to 200 undo steps and safe automatic foundation moves. Tap a card and its highlighted destination. Random deals are not guaranteed solvable. |
+| Dominó | Double-six draw dominoes against one computer player. Seven starting tiles each, highest dealt double opens, mandatory buying when blocked, pass only when the stock is empty, fewest pips wins a blocked round. Three AI difficulties use only their own hand and public information. |
+| Caça-palavras | Six themes (Jardim, Cozinha, Animais, Viagem, Música, Casa), 8×8 / 10×10 / 12×12 grids, six / eight / ten words. Higher levels add diagonals and reversed words. Select by tapping endpoints, dragging, or arrows and Enter; hints reveal the starting letter. Every listed word is placed; there is no timer. |
+
+The games use semantic HTML controls and exact native card ranks, suits, domino pips and letters, over an original generated felt texture. No external fonts or images are required. Saved state is validated before restoring and uses separate `cooked:classics:v1:` keys. Only a completed round sends an advertising event; opening menus, requesting hints and starting over do not trigger it.
+
+The Android preview is **1.5.0-preview (code 6)**, includes all **15 games**, and keeps the existing v1.2–v1.4 preview signing certificate. Test advertising remains enabled and does not earn revenue.
 
 ## Mobile Arcade — v1.4.0
 

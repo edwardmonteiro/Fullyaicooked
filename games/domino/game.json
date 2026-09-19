@@ -1,0 +1,13 @@
+{
+  "id": "domino",
+  "title": "Dominó",
+  "description": "Uma mesa, dois jogadores. Enfrente o computador em três dificuldades, com compra e pontuação de mesa fechada.",
+  "category": "Clássicos de mesa",
+  "color": "#f3c46e",
+  "controls": "Toque na peça · Escolha uma ponta quando necessário",
+  "orientation": "portrait",
+  "audience": "general",
+  "entry": "index.html",
+  "cover": "cover.webp",
+  "order": 14
+}

@@ -13,6 +13,7 @@
   const playIcon = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 4 14 8-14 8z"/></svg>';
   const heart = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg>';
   const text = (tag, className, value) => { const el = document.createElement(tag); el.className = className; el.textContent = value; return el; };
+  const searchText = value => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
   const nativeEvent = (name, data = '') => { if (native) location.href = `arcade://${name}?value=${encodeURIComponent(data)}`; };
   function toast(message) { $('toast').textContent = message; $('toast').hidden = false; clearTimeout(toastTimer); toastTimer = setTimeout(() => $('toast').hidden = true, 2200); }
   function renderFilters() {
@@ -25,8 +26,8 @@
   function imageFor(game) { const img = document.createElement('img'); img.src = game.cover; img.alt = `${game.title} cover art`; img.width = 960; img.height = 600; img.loading = 'lazy'; img.onerror = () => img.replaceWith(text('div', 'cover-fallback', game.title[0])); return img; }
   function render() {
     $('games').replaceChildren();
-    const query = $('search').value.trim().toLowerCase();
-    const visible = games.filter(g => (view !== 'favorites' || favorites.has(g.id)) && (category === 'All games' || g.category === category) && `${g.title} ${g.description} ${g.category}`.toLowerCase().includes(query));
+    const query = searchText($('search').value.trim());
+    const visible = games.filter(g => (view !== 'favorites' || favorites.has(g.id)) && (category === 'All games' || g.category === category) && searchText(`${g.title} ${g.description} ${g.category}`).includes(query));
     $('collection-title').textContent = view === 'favorites' ? 'Your favorites' : 'Fresh from the kitchen';
     $('result-count').textContent = `${visible.length} ${visible.length === 1 ? 'game' : 'games'} · All free`;
     $('favorite-count').textContent = games.filter(g => favorites.has(g.id)).length;

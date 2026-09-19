@@ -1,0 +1,13 @@
+{
+  "id": "sunset-rider",
+  "title": "Sunset Rider",
+  "description": "A one-thumb motorcycle escape: read the traffic, collect energy and turbo through three checkpoint routes.",
+  "category": "Mobile Arcade",
+  "color": "#ffd08b",
+  "controls": "Swipe or tap a lane \u00b7 Hold Space for turbo",
+  "orientation": "portrait",
+  "audience": "general",
+  "entry": "index.html",
+  "cover": "cover.webp",
+  "order": 11
+}

@@ -2,7 +2,7 @@
 
 A free HTML5 arcade marketplace and an installable Android app.
 
-The original repository contained only this README and its Apache 2.0 license. The catalog now contains nine games. The six original games are: **Neon Rally**, **Orbit Breaker**, **Stack Circuit**, **Triathlon Sprint**, **Bike Rider**, and **Pocket Golf**. They use illustrated environments and original sprites. Three additional HTML5 tributes revisit River Raid, Enduro and Pitfall with independently written code, bitmap artwork and level layouts.
+The original repository contained only this README and its Apache 2.0 license. The catalog now contains twelve games. The six original games are: **Neon Rally**, **Orbit Breaker**, **Stack Circuit**, **Triathlon Sprint**, **Bike Rider**, and **Pocket Golf**. They use illustrated environments and original sprites. Three additional HTML5 tributes revisit River Raid, Enduro and Pitfall with independently written code, bitmap artwork and level layouts.
 
 ## Included
 
@@ -39,6 +39,20 @@ The APK is `android/app/build/outputs/apk/debug/app-debug.apk`. The included Git
 To include a download in the website, copy the finished APK to `releases/fully-ai-cooked.apk`, then run `npm run build`. APK files are excluded from Git; distribution artifacts are published separately.
 
 The preview requires Android 6.0+ and a current compatible Android System WebView. It does not request microphone, camera, location, contacts, or file-storage permission. Internet access is used for advertising when available; the included games work offline.
+
+## Mobile Arcade — v1.4.0
+
+Three new portrait games combine simple single-player controls with illustrated mobile-game artwork. They add nine missions, saved stars and best scores, pause/resume, keyboard controls, touch gestures and short synthesized effects. No account or internet connection is needed to play in the APK.
+
+| Game | Controls | Three-mission progression |
+| --- | --- | --- |
+| Starfall Patrol | Drag to fly; automatic fire; tap Pulse or press Space | Five formation patterns, shield/double-fire pickups, checkpoint resupply, three sentinel bosses with wider bullet fans |
+| Sunset Rider | Swipe/tap a lane or use left/right; hold Turbo/Space | Three checkpoint routes, denser traffic, fair open lanes, energy pickups, close-call bonuses and checkpoint hull repair |
+| Sky Bastion | Tap to intercept; arrows/WASD aim, Space fires; tap EMP | Five, six, then seven waves; splitting missiles, finite recharging energy, chain-reaction explosions and three cities to protect |
+
+The games use a deterministic 120 Hz simulation in `games/shared/mobile/`, separate from the responsive canvas renderer. All visual assets are bundled; no external image or font services are required. The compact control deck stays outside the playfield. Progress uses the existing per-game campaign storage, leaving the earlier games' records intact.
+
+The Android preview is version 1.4.0 (code 5) and retains the v1.2/v1.3 signing certificate. New games participate in the existing capped advertising flow only after a mission ends. **The preview still uses test ads and does not generate advertising revenue.**
 
 ## 2600 Tributes — v1.3.0
 

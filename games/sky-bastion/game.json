@@ -1,0 +1,13 @@
+{
+  "id": "sky-bastion",
+  "title": "Sky Bastion",
+  "description": "Protect three coastal cities. Tap to intercept incoming missiles and build explosive chain reactions.",
+  "category": "Mobile Arcade",
+  "color": "#a9bdff",
+  "controls": "Tap to intercept \u00b7 Arrows aim \u00b7 Space fire",
+  "orientation": "portrait",
+  "audience": "general",
+  "entry": "index.html",
+  "cover": "cover.webp",
+  "order": 12
+}

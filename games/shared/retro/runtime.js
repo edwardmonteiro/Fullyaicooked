@@ -5,7 +5,7 @@ import { renderGame } from './render.js';
 
 const definitions = {
   'river-raid':{title:'River Raid',number:'01',subtitle:'A river. One jet. No turning back.',action:'FIRE',Model:RiverRaid,accent:'#e2d879',instructions:'Steer past the banks and islands. Shoot enemies and the center of each bridge. Fly over a fuel depot to refuel; slow down to take on more fuel.',hint:'← → steer · ↑ ↓ speed · Space fire',rules:['3 jets · extra jet every 10,000 points','Destroyed bridges become restart points','Hold fire to repeat; release it before refueling']},
-  enduro:{title:'Enduro',number:'02',subtitle:'Keep driving until the next sunrise.',action:'GAS',Model:Enduro,accent:'#e8c89a',instructions:'Pass 200 cars on day one, then 300 each day. Hold GAS to accelerate. Releasing it holds your speed. Brake before traffic closes the gap.',hint:'← → steer · ↓ brake · Space gas',rules:['Ice changes steering; fog limits visibility','A green flag means your daily quota is met','Stay on the road until dawn to advance']},
+  enduro:{title:'Enduro',number:'02',subtitle:'Corra até o próximo amanhecer.',action:'ACELERAR',Model:Enduro,accent:'#e8c89a',instructions:'Ultrapasse 200 carros no primeiro dia e 300 nos seguintes. Segure ACELERAR; solte para manter a velocidade. Use FREIO antes de um bloqueio.',hint:'← → direção · ↓ freio · Espaço acelerar',rules:['Gelo reduz a resposta; neblina encurta a visão','A bandeira verde confirma a meta do dia','Continue até amanhecer para avançar']},
   pitfall:{title:'Pitfall!',number:'03',subtitle:'Twenty minutes. Thirty-two treasures.',action:'JUMP',Model:Pitfall,accent:'#cad080',instructions:'Explore the jungle in both directions. Jump to grab a swinging vine, then press jump again to release it. Use ladders to reach underground shortcuts.',hint:'← → move · ↑ ↓ ladder · Space jump / release',rules:['3 lives · 255 connected jungle screens','Underground exits travel three screens at once','Logs cost points; pits and creatures cost lives']}
 };
 const $=id=>document.getElementById(id),kind=document.body.dataset.game,config=definitions[kind];
@@ -14,7 +14,7 @@ let model=new config.Model(),state='menu',last=0,accumulator=0,countdown=0,round
 let audioContext,engine,engineGain,previousPadPause=false,storage;
 try{storage=localStorage;best=Number(storage.getItem('cooked:retro:v1:'+kind))||0;if(!Number.isFinite(best)||best<0)best=0;muted=storage.getItem('cooked:retro:muted')==='true';crt=storage.getItem('cooked:retro:crt')==='true';}catch{}
 document.documentElement.style.setProperty('--accent',config.accent);
-$('name').textContent=config.title;$('edition').textContent=`2600 TRIBUTES / ${config.number}`;$('action').textContent=config.action;$('action').setAttribute('aria-label',config.action==='FIRE'?'Fire':config.action==='GAS'?'Accelerate':'Jump or release vine');$('hint').textContent=config.hint;
+$('name').textContent=config.title;$('edition').textContent=`2600 TRIBUTES / ${config.number}`;$('action').textContent=config.action;$('action').setAttribute('aria-label',config.action==='FIRE'?'Fire':kind==='enduro'?'Accelerate':'Jump or release vine');$('hint').textContent=config.hint;
 canvas.setAttribute('aria-label',config.title+' game screen. '+config.hint);
 for(const rule of config.rules){const li=document.createElement('li');li.textContent=rule;$('rules').append(li);}
 function persist(key,value){try{storage?.setItem(key,String(value));}catch{}}
@@ -53,7 +53,7 @@ for(const b of document.querySelectorAll('[data-input]')){
   const release=e=>{held.delete(e.pointerId);if(![...held.values()].includes(name))b.classList.remove('held');};
   b.onpointerup=release;b.onpointercancel=release;b.onlostpointercapture=release;
   // Keyboard and assistive activation of a focused control also produces a press.
-  b.onclick=e=>{if(e.detail!==0||state!=='playing')return;const id='click-'+name;held.set(id,name);setTimeout(()=>held.delete(id),150);};
+  b.onclick=e=>{if(e.detail!==0||state!=='playing')return;const id=Symbol(name);held.set(id,name);setTimeout(()=>held.delete(id),150);};
 }
 const keyMap={ArrowLeft:'left',KeyA:'left',ArrowRight:'right',KeyD:'right',ArrowUp:'up',KeyW:'up',ArrowDown:'down',KeyS:'down',Space:'action'};
 document.addEventListener('keydown',e=>{
@@ -83,8 +83,9 @@ function frame(now){
   }
   if(engineGain&&audioContext){engineGain.gain.setTargetAtTime(!muted&&state==='playing'&&!model.dead ? .009 : 0,audioContext.currentTime,.04);engine.frequency.setTargetAtTime(kind==='enduro'?30+model.speed*.43:80+model.speed*1.1,audioContext.currentTime,.05);}
   renderGame(context,kind,model);
-  const value=kind==='river-raid'?`Score ${Math.floor(model.score)} · Jets ${model.lives} · Fuel ${Math.ceil(model.fuel)}% · Bridge ${model.bridges}`:kind==='enduro'?`Day ${model.day} · ${Math.max(0,model.quota-model.passed)} cars to pass · ${Math.floor(model.speed*.8)} km/h · ${model.phase}`:`Score ${Math.floor(model.score)} · Lives ${model.lives} · Treasure ${model.treasures.size}/32 · Room ${model.roomIndex+1}`;
+  const value=kind==='river-raid'?`Score ${Math.floor(model.score)} · Jets ${model.lives} · Fuel ${Math.ceil(model.fuel)}% · Bridge ${model.bridges}`:kind==='enduro'?`Dia ${model.day} · Faltam ${Math.max(0,model.quota-model.passed)} · ${Math.floor(model.speed*.8)} km/h · ${{day:'dia',ice:'gelo',sunset:'pôr do sol',night:'noite',fog:'neblina',dawn:'amanhecer'}[model.phase]}`:`Score ${Math.floor(model.score)} · Lives ${model.lives} · Treasure ${model.treasures.size}/32 · Room ${model.roomIndex+1}`;
   if($('readout').textContent!==value)$('readout').textContent=value;
   requestAnimationFrame(frame);
 }
-labels();setState('menu');overlay(config.title,config.instructions,'Start game');resize();requestAnimationFrame(frame);
+if(kind==='enduro'){document.documentElement.lang='pt-BR';$('start').textContent='Jogar';$('action').setAttribute('aria-label','Acelerar');document.querySelector('[data-input=down]').textContent='FREIO';document.querySelector('[data-input=down]').setAttribute('aria-label','Frear');}
+labels();setState('menu');overlay(config.title,config.instructions,kind==='enduro'?'Jogar':'Start game');resize();requestAnimationFrame(frame);

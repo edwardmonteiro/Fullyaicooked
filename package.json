@@ -1,13 +1,13 @@
 {
   "name": "fullyaicooked-arcade",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "private": true,
   "type": "module",
   "scripts": {
     "build": "node scripts/build.mjs",
     "test": "node --test tests/*.test.mjs",
     "android:sync": "node scripts/build.mjs --android",
-    "check": "node --check web/app.js && node --check web/ads.js && node --check games/shared/championship.js && node --check games/shared/championship-render.js && node --check games/shared/runtime.js && node --check games/shared/sports/models.js && node --check games/shared/sports/render.js && node --check games/shared/retro/runtime.js && node --check games/shared/retro/render.js && node --check games/shared/mobile/runtime.js && node --check games/shared/mobile/render.js && node --check games/shared/classics/runtime.js && npm test",
+    "check": "node --check web/app.js && node --check web/ads.js && node --check games/shared/championship.js && node --check games/shared/championship-render.js && node --check games/shared/runtime.js && node --check games/shared/sports/models.js && node --check games/shared/sports/render.js && node --check games/shared/retro/runtime.js && node --check games/shared/retro/render.js && node --check games/shared/mobile/runtime.js && node --check games/shared/mobile/render.js && node --check games/shared/classics/runtime.js && node --check games/shared/precision/runtime.js && node --check games/shared/precision/render.js && npm test",
     "dev": "vite"
   },
   "engines": {

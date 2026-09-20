@@ -1,5 +1,5 @@
 import { riverAt } from './river.js';
-import { roadCurve } from './enduro.js';
+import { roadCurve, roadProjection } from './enduro.js';
 import { vineAt, sandOpen, crocOpen } from './pitfall.js';
 
 // Small original bitmap sprites and lettering, drawn on a 160 × 192 raster.
@@ -60,9 +60,10 @@ function car(c,x,y,scale,color,night=false){
   ink(c,'#20231f',l-1,top+h*.2,2,h*.27);ink(c,'#20231f',l+w-1,top+h*.2,2,h*.27);ink(c,'#20231f',l-1,top+h*.69,2,h*.24);ink(c,'#20231f',l+w-1,top+h*.69,2,h*.24);
   ink(c,color,l+1,top,w-2,h);ink(c,color,l,top+h*.35,w,h*.5);ink(c,'#393f49',l+2,top+h*.21,w-4,h*.23);ink(c,'#dacdaf',l+2,top+h*.66,w-4,scale);ink(c,'#db7043',l+1,y-2*scale,2*scale,scale);ink(c,'#db7043',l+w-3*scale,y-2*scale,2*scale,scale);
 }
-function roadAt(m,z){const p=1/(1+z/95);return{x:80+(roadCurve(m.distance+z)-roadCurve(m.distance))*p,y:52+p*103,half:8+p*66,p};}
+const roadAt=roadProjection;
+function enduroPalette(m){const phases=['day','ice','sunset','night','fog','dawn'],starts=[0,.25,.42,.54,.8,.94],i=phases.indexOf(m.phase),previous=palettes[phases[(i+5)%6]],next=palettes[m.phase],t=Math.min(1,(m.dayTime/120-starts[i])*60);if(i===0)return next;return next.map((hex,j)=>{const a=previous[j].match(/\w\w/g).map(v=>parseInt(v,16)),b=hex.match(/\w\w/g).map(v=>parseInt(v,16));return 'rgb('+a.map((v,k)=>Math.round(v+(b[k]-v)*t)).join(',')+')';});}
 function enduro(c,m){
-  const p=palettes[m.phase],night=m.phase==='night';
+  const p=enduroPalette(m),night=m.phase==='night';
   ink(c,p[0],0,0,160,60);ink(c,p[1],118,23,7,9);
   for(let x=0;x<160;x+=2){const h=8+Math.sin((x+roadCurve(m.distance)*.2)*.06)*7+Math.sin(x*.17)*4;ink(c,p[2],x,54-h,2,h+8);}
   ink(c,p[2],0,58,160,110);
@@ -70,7 +71,7 @@ function enduro(c,m){
     const rel=(y-52)/103,z=Math.max(0,95*(1/Math.max(.008,rel)-1)),r=roadAt(m,z),stripe=Math.floor((m.distance+z)/28)%2;
     ink(c,p[3],r.x-r.half,y,r.half*2,1);
     const edge=Math.max(1,r.p*2);ink(c,p[4],r.x-r.half,y,edge,1);ink(c,p[4],r.x+r.half-edge,y,edge,1);
-    if(stripe&&r.p>.1){ink(c,p[4],r.x-r.half/3,y,Math.max(1,r.p),1);ink(c,p[4],r.x+r.half/3,y,Math.max(1,r.p),1);}
+    if(stripe&&r.p>.1){ink(c,night?'#929784':p[4],r.x-r.half,y,edge*1.8,1);ink(c,night?'#929784':p[4],r.x+r.half-edge*1.8,y,edge*1.8,1);}
   }
   const visible=m.phase==='fog'?115:night?330:540;
   for(const v of [...m.cars].sort((a,b)=>b.z-a.z)){
@@ -78,10 +79,11 @@ function enduro(c,m){
     car(c,r.x+v.x*r.half*.83,r.y,Math.max(.2,r.p),['#c69272','#d0be78','#76a887','#8292be','#d4d6bc'][v.color],night);
   }
   if(m.phase==='fog')for(let y=50;y<104;y++)ink(c,p[0],0,y,160,1);
+  if(Math.abs(m.x)>1.02&&m.speed>5){for(let j=0;j<5;j++)ink(c,p[4],80+m.x*61-7+(j%2)*14,156+j*2+(Math.floor(m.distance/8)%3),2,2);}
   if(!m.bump||Math.floor(m.time*18)%2)car(c,80+m.x*61,157,1.05,'#e7e4c4');
   ink(c,'#252b27',0,168,160,24);
   text(c,String(Math.max(0,m.quota-m.passed)).padStart(3,'0'),8,171,m.qualified?'#a8db74':'#e4dbbb',2);
-  text(c,'DAY '+m.day,75,172,'#d4cbaa');text(c,(m.distance/4500).toFixed(1).padStart(5,'0')+' KM',151,172,'#d4cbaa',1,'right');
+  text(c,'DIA '+m.day,75,172,'#d4cbaa');text(c,(m.distance/4500).toFixed(1).padStart(5,'0')+' KM',151,172,'#d4cbaa',1,'right');
   text(c,Math.round(m.speed*.8)+' KM/H',8,186,'#d4cbaa');
   for(let x=0;x<74;x+=3)ink(c,'#5f6551',76+x,184,2,4);ink(c,m.qualified?'#b8e58a':'#beab6c',76,184,Math.round(74*m.dayTime/120),4);
   if(m.qualified){for(let i=0;i<6;i++)ink(c,i%2?'#83bb62':'#dcefb0',41+(i%3)*2,171+Math.floor(i/3)*2,2,2);}

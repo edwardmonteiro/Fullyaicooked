@@ -31,7 +31,7 @@ test('Enduro supports both daily quotas with normal steering and accelerator inp
 });
 test('Enduro coasts when gas is released, brakes on down, and fails a missed dawn quota',()=>{
   const m=new Enduro();run(m,2,()=>({action:true}));const speed=m.speed;run(m,.5);assert.equal(m.speed,speed);run(m,.5,()=>({down:true}));assert(m.speed<speed-45);
-  const parked=new Enduro();run(parked,DAY_LENGTH+.01);assert.equal(parked.done,true);assert.match(parked.message,/200 cars/);assert.equal(parked.day,1);
+  const parked=new Enduro();run(parked,DAY_LENGTH+.01);assert.equal(parked.done,true);assert.match(parked.message,/200 carros/);assert.equal(parked.day,1);
 });
 test('Enduro ice has slower steering response and night and fog occur before dawn',()=>{
   const dry=new Enduro(),ice=new Enduro();dry.speed=ice.speed=180;ice.dayTime=DAY_LENGTH*.3;

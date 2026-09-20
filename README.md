@@ -2,7 +2,7 @@
 
 A free HTML5 arcade marketplace and an installable Android app.
 
-The original repository contained only this README and its Apache 2.0 license. The catalog now contains fifteen games. The six original games are: **Neon Rally**, **Orbit Breaker**, **Stack Circuit**, **Triathlon Sprint**, **Bike Rider**, and **Pocket Golf**. They use illustrated environments and original sprites. Three additional HTML5 tributes revisit River Raid, Enduro and Pitfall with independently written code, bitmap artwork and level layouts.
+The original repository contained only this README and its Apache 2.0 license. The catalog now contains eighteen games. The six original games are: **Neon Rally**, **Orbit Breaker**, **Stack Circuit**, **Triathlon Sprint**, **Bike Rider**, and **Pocket Golf**. They use illustrated environments and original sprites. Three additional HTML5 tributes revisit River Raid, Enduro and Pitfall with independently written code, bitmap artwork and level layouts.
 
 ## Included
 
@@ -40,6 +40,26 @@ To include a download in the website, copy the finished APK to `releases/fully-a
 
 The preview requires Android 6.0+ and a current compatible Android System WebView. It does not request microphone, camera, location, contacts, or file-storage permission. Internet access is used for advertising when available; the included games work offline.
 
+## Clássicos de arcade — v1.6.0
+
+Three independent HTML5 recreations add more complete historical game mechanics:
+
+| Game | Play and progression |
+| --- | --- |
+| Space Invaders | 2600 single-player rule base: 36 enemies, one player shot, 3 destructible shields, 5–30 points by row, 200-point command ship, faster movement as the formation shrinks, 3 lives, descending waves; optional faster zigzag bombs |
+| Breakout | Arcade rule base: 112 bricks in 8 rows, 5 balls, two walls / 896 points, contact-dependent rebound angle, speed steps, a half-width paddle after the ceiling, and swept collision detection |
+| Asteroids | 4 ships, persistent momentum, rotation/thrust/fire, screen wrapping, 20/50/100-point size tree, bonus ship each 5,000 points, risky hyperspace; optional enemy saucers; projectiles and ship core use the rendered rock polygons |
+
+Portuguese menus, large touch controls, keyboard/gamepad input, local high scores separated by mode, pause on backgrounding, synthesized sound and optional phosphor texture. Game simulation runs at 120 Hz. No account or purchase is required. Ads can only be requested after game over, never mid-wave.
+
+Enduro now shares one perspective projection between rendering and traffic collision checks, uses long smooth bends, avoids repeated overlapping traffic lanes, varies opponent placement over successive days, blends weather palettes and provides a compact direction/brake/accelerator deck. Going off-road can no longer accelerate a stopped car. The existing 200/300 passing quotas, coasting and 120-second day are preserved.
+
+These are recreations, not cartridge emulation or frame-exact ports. Breakout follows the arcade base rather than the 2600 variant. Asteroids combines 2600-style life/scoring rules with readable vector outlines; enemy patterns, wave counts, timings and a two-second hyperspace cooldown are authored. There are no ROMs or extracted sprites. The generated concept's erroneous Invaders count and rainbow wall were replaced with the researched formation and four-color scoring bands. Functional pixel/vector shapes remain code-native so artwork and collision geometry agree.
+
+References: [Space Invaders instruction booklet](https://www.atariage.com/manual_html_page.php?SoftwareLabelID=460), [Asteroids instruction booklet](https://www.atariage.com/manual_html_page.php?SoftwareID=828&SystemID=2600&itemTypeID=HTMLMANUAL), [Atari Breakout operator manual, TM-058](https://arcarc.xmission.com/PDF_Arcade_Atari_Kee/Breakout/Breakout_TM-058_1st_Edition.pdf), [Enduro instruction booklet](https://atariage.com/manual_html_page.php?SoftwareLabelID=163).
+
+`npm run check` passes **71 tests**. New fixtures complete both Breakout walls at 896 points, four Invaders waves and at least three Asteroids fields using ordinary input controls. Existing Enduro fixtures still qualify for two successive days. Tests also exercise shield erosion, projectile limits, corner and seam collisions, score/life accounting, challenge modes and terminal-state freezing. Browser checks cover 390×780 phones, 740×780 desktop, and 780×390 Enduro. Real Android multi-touch/gamepad and device performance remain untested.
+
 ## Clássicos de mesa — v1.5.0
 
 Three Portuguese single-player games add calm, readable play to the arcade. All work offline in the APK, remember unfinished rounds on the current device, and offer larger text/pieces, keyboard controls, in-game instructions and pause/resume.
@@ -52,7 +72,7 @@ Three Portuguese single-player games add calm, readable play to the arcade. All 
 
 The games use semantic HTML controls and exact native card ranks, suits, domino pips and letters, over an original generated felt texture. No external fonts or images are required. Saved state is validated before restoring and uses separate `cooked:classics:v1:` keys. Only a completed round sends an advertising event; opening menus, requesting hints and starting over do not trigger it.
 
-The Android preview is **1.5.0-preview (code 6)**, includes all **15 games**, and keeps the existing v1.2–v1.4 preview signing certificate. Test advertising remains enabled and does not earn revenue.
+The Android preview is **1.6.0-preview (code 7)**, includes all **18 games**, and keeps the existing v1.2–v1.5 preview signing certificate. Test advertising remains enabled and does not earn revenue.
 
 ## Mobile Arcade — v1.4.0
 

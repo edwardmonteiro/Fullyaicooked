@@ -1,0 +1,13 @@
+{
+  "id": "keystone-kapers",
+  "title": "Keystone Kapers",
+  "description": "Persiga o ladrão pelos andares da loja. Use elevadores, pule carrinhos e abaixe para desviar dos aviões.",
+  "category": "Clássicos de arcade",
+  "color": "#abc295",
+  "controls": "Setas para correr, entrar e abaixar; Espaço para pular.",
+  "orientation": "landscape",
+  "audience": "general",
+  "entry": "index.html",
+  "cover": "cover.webp",
+  "order": 21
+}

@@ -2,7 +2,7 @@
 
 A free HTML5 arcade marketplace and an installable Android app.
 
-The original repository contained only this README and its Apache 2.0 license. The catalog now contains eighteen games. The six original games are: **Neon Rally**, **Orbit Breaker**, **Stack Circuit**, **Triathlon Sprint**, **Bike Rider**, and **Pocket Golf**. They use illustrated environments and original sprites. Three additional HTML5 tributes revisit River Raid, Enduro and Pitfall with independently written code, bitmap artwork and level layouts.
+The original repository contained only this README and its Apache 2.0 license. The catalog now contains twenty-one games. The six original games are: **Neon Rally**, **Orbit Breaker**, **Stack Circuit**, **Triathlon Sprint**, **Bike Rider**, and **Pocket Golf**. They use illustrated environments and original sprites. Three additional HTML5 tributes revisit River Raid, Enduro and Pitfall with independently written code, bitmap artwork and level layouts.
 
 ## Included
 
@@ -40,6 +40,22 @@ To include a download in the website, copy the finished APK to `releases/fully-a
 
 The preview requires Android 6.0+ and a current compatible Android System WebView. It does not request microphone, camera, location, contacts, or file-storage permission. Internet access is used for advertising when available; the included games work offline.
 
+## Nostalgia update — v1.7.0
+
+Fishing Derby, Combat and Keystone Kapers add three independent HTML5 recreations. All have Portuguese instructions, large controls outside the 4:3 playfield, synthesized effects, pause on backgrounding and local records separated by mode. They work offline in the APK. No ROMs or extracted game assets are included.
+
+| Game | Rules and progression |
+| --- | --- |
+| Fishing Derby | Six fish rows worth 2/4/6 lb, mouth contact, first-hook reel priority, lateral shark avoidance, first to 99 lb, computer fisherman; three difficulty settings and fastest-win record |
+| Combat | 136-second aircraft duels against a computer pilot, one point per hit, clouds hide planes but permit hits, continuous flight and screen wrapping; biplanes, machine-gun biplanes and jets |
+| Keystone Kapers | Three internal floors plus roof, scrolling corridors and live minimap, scheduled elevator doors, upward escalators, jump/duck, 9-second obstacle penalties, dangerous planes, 50-point loot, four initial police, bonus police each 10,000 points, escalating pursuits and time-based capture multipliers |
+
+Fidelity boundary: researched game rules with original code and pixel geometry, not cartridge emulation. Combat is an aircraft subset, with a new solo opponent and unified turn/speed touch controls; tank and formation modes are not included. Collision geometry and game timings are authored. Keystone's corridor layouts, hazard schedules and elevator cycle are original. Fishing's trajectories, bite tolerances and opponent strategy are original. Controls remain simple; the simulation runs at 120 Hz.
+
+References: [Fishing Derby manual](https://atariage.com/manual_html_page.php?SoftwareLabelID=182), [Combat manual](https://www.atariage.com/manual_html_page.php?SoftwareLabelID=94), [Keystone Kapers manual](https://www.atariage.com/manual_html_page.php?SoftwareLabelID=261).
+
+Validation: **87 tests pass**. New normal-input controllers win fishing races in all modes, finish winning 136-second duels in all aircraft modes, complete nine consecutive arrests through elevators, and complete an arrest using only escalators. Mechanical checks cover reel priority, shark theft, aircraft silhouettes and seams, cloud concealment, ducking, timing penalties, life accounting and frozen terminal states. Device/browser coverage is recorded in [nostalgia QA](docs/NOSTALGIA_QA.md).
+
 ## Clássicos de arcade — v1.6.0
 
 Three independent HTML5 recreations add more complete historical game mechanics:
@@ -72,7 +88,7 @@ Three Portuguese single-player games add calm, readable play to the arcade. All 
 
 The games use semantic HTML controls and exact native card ranks, suits, domino pips and letters, over an original generated felt texture. No external fonts or images are required. Saved state is validated before restoring and uses separate `cooked:classics:v1:` keys. Only a completed round sends an advertising event; opening menus, requesting hints and starting over do not trigger it.
 
-The Android preview is **1.6.0-preview (code 7)**, includes all **18 games**, and keeps the existing v1.2–v1.5 preview signing certificate. Test advertising remains enabled and does not earn revenue.
+The Android preview is **1.7.0-preview (code 8)**, includes all **21 games**, and keeps the existing v1.2–v1.6 preview signing certificate. Test advertising remains enabled and does not earn revenue.
 
 ## Mobile Arcade — v1.4.0
 

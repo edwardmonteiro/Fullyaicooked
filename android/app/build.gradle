@@ -13,8 +13,8 @@ android {
         applicationId 'com.fullyaicooked.arcade'
         minSdk 23
         targetSdk 36
-        versionCode 7
-        versionName '1.6.0'
+        versionCode 8
+        versionName '1.7.0'
         manifestPlaceholders = [admobAppId: ads.applicationId]
         buildConfigField 'boolean', 'TEST_ADS', String.valueOf(!live)
         buildConfigField 'String', 'BANNER_ID', '"' + ads.bannerId + '"'

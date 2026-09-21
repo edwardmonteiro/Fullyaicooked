@@ -1,0 +1,13 @@
+{
+  "id": "triathlon-sprint",
+  "title": "Triathlon Sprint",
+  "description": "Three championships. Outpace four rivals across the swim, cycle, and final run.",
+  "category": "Sports",
+  "color": "#79e8e0",
+  "controls": "Drag or ← → steer · Space pace · Slipstream saves stamina",
+  "orientation": "portrait",
+  "audience": "general",
+  "entry": "index.html",
+  "cover": "cover.webp",
+  "order": 4
+}

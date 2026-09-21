@@ -1,0 +1,13 @@
+{
+  "id": "fishing-derby",
+  "title": "Fishing Derby",
+  "description": "Fisgue peixes de 2, 4 e 6 libras, drible o tubarão e vença a corrida até 99 contra o computador.",
+  "category": "Clássicos de arcade",
+  "color": "#efb76b",
+  "controls": "Setas ou arraste a isca; Espaço ou Recolher para puxar.",
+  "orientation": "landscape",
+  "audience": "general",
+  "entry": "index.html",
+  "cover": "cover.webp",
+  "order": 19
+}

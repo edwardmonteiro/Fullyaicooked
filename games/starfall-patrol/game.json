@@ -1,0 +1,13 @@
+{
+  "id": "starfall-patrol",
+  "title": "Starfall Patrol",
+  "description": "Auto-fire space battles, weaving fleets, shield pickups and three sentinel bosses. Drag to fly.",
+  "category": "Mobile Arcade",
+  "color": "#7be3ea",
+  "controls": "Drag to fly \u00b7 Space pulse",
+  "orientation": "portrait",
+  "audience": "general",
+  "entry": "index.html",
+  "cover": "cover.webp",
+  "order": 10
+}

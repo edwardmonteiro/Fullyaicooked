@@ -1,0 +1,49 @@
+name: Build arcade and Android APK
+on:
+  push:
+    branches: [main, codex/arcade-marketplace]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify catalog and gameplay
+        run: npm run check
+      - name: Build web and bundle games
+        run: npm run android:sync
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: platform-tools
+      - name: Install Android toolchain
+        run: sdkmanager "platforms;android-36" "build-tools;36.0.0"
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.13'
+      - name: Build installable preview APK
+        working-directory: android
+        run: gradle assembleDebug --console=plain
+      - name: Include Android download in website
+        run: |
+          mkdir -p releases
+          cp android/app/build/outputs/apk/debug/app-debug.apk releases/fully-ai-cooked.apk
+          npm run build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fully-ai-cooked-apk
+          path: releases/fully-ai-cooked.apk
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fully-ai-cooked-website
+          path: dist/
+

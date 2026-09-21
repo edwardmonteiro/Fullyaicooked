@@ -1,0 +1,13 @@
+{
+  "id": "orbit-breaker",
+  "title": "Orbit Breaker",
+  "description": "Five orbital sectors. Crack armor, trigger chain reactions, and catch multiball.",
+  "category": "Arcade",
+  "color": "#61e6d0",
+  "controls": "Drag or ← → move · Space launch",
+  "orientation": "portrait",
+  "audience": "general",
+  "entry": "index.html",
+  "cover": "cover.webp",
+  "order": 2
+}

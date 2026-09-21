@@ -1,0 +1,13 @@
+{
+  "id": "pocket-golf",
+  "title": "Pocket Golf",
+  "description": "Nine crafted greens. Bank shots past water, moving gates, and bumper gardens.",
+  "category": "Sports",
+  "color": "#cafd84",
+  "controls": "Drag to putt · ← → aim · ↑ ↓ power · Space putt",
+  "orientation": "portrait",
+  "audience": "general",
+  "entry": "index.html",
+  "cover": "cover.webp",
+  "order": 6
+}

@@ -1,0 +1,23 @@
+{
+  "concept": "docs/visual/precision-classics-concept.webp",
+  "texture": "games/shared/precision/phosphor.webp",
+  "method": "Built-in image generation; separate concept and text-free phosphor pass. Covers are real browser gameplay captures.",
+  "tokens": {
+    "background": "#111b28",
+    "playfield": "#050809",
+    "ink": "#f6efdb",
+    "border": "#a7b1b8",
+    "font": "system monospace",
+    "boardRatio": "4:5",
+    "touchHeight": "62px"
+  },
+  "intentionalCorrections": [
+    "36 enemies / three shields replace the concept’s arcade formation to follow the 2600 manual.",
+    "Four two-row scoring colors replace the concept’s decorative rainbow.",
+    "Four initial Asteroids ships and five Breakout balls are shown numerically.",
+    "Five Asteroids controls use two rows on phones, with a full-width hyperspace button.",
+    "Native pixel/vector shapes share gameplay coordinates; the image-generated phosphor is optional and decorative.",
+    "Portuguese instructions, mode settings, sound, high scores and restart extend the concept using its same flat panel system.",
+    "Local system font avoids offline font dependencies."
+  ]
+}

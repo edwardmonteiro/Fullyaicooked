@@ -1,0 +1,13 @@
+{
+  "id": "combat",
+  "title": "Combat",
+  "description": "Duelos aéreos de 2 minutos e 16 segundos. Biplanos, nuvens, rajadas e jatos contra um rival controlado pelo jogo.",
+  "category": "Clássicos de arcade",
+  "color": "#9fc0d1",
+  "controls": "Setas para girar e mudar velocidade; Espaço para atirar.",
+  "orientation": "landscape",
+  "audience": "general",
+  "entry": "index.html",
+  "cover": "cover.webp",
+  "order": 20
+}

@@ -1,0 +1,13 @@
+{
+  "id": "asteroids",
+  "title": "Asteroids",
+  "description": "Controle a inércia, divida asteroides e atravesse as bordas. Quatro naves e hiperespaço de emergência.",
+  "category": "Clássicos de arcade",
+  "color": "#ddd7c7",
+  "controls": "Setas para girar e acelerar, Espaço para atirar, baixo para hiperespaço.",
+  "orientation": "portrait",
+  "audience": "general",
+  "entry": "index.html",
+  "cover": "cover.webp",
+  "order": 18
+}

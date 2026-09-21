@@ -1,0 +1,13 @@
+{
+  "id": "space-invaders",
+  "title": "Space Invaders",
+  "description": "36 invasores, escudos destrutíveis e um tiro de cada vez. Defenda a Terra em ondas cada vez mais rápidas.",
+  "category": "Clássicos de arcade",
+  "color": "#70d996",
+  "controls": "Setas para mover, Espaço para atirar. Botões de toque.",
+  "orientation": "portrait",
+  "audience": "general",
+  "entry": "index.html",
+  "cover": "cover.webp",
+  "order": 16
+}

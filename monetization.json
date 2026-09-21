@@ -1,0 +1,14 @@
+{
+  "web": {
+    "enabled": false,
+    "publisherId": "",
+    "bannerSlot": "",
+    "certifiedCmpConfigured": false
+  },
+  "android": {
+    "mode": "test",
+    "applicationId": "ca-app-pub-3940256099942544~3347511713",
+    "bannerId": "ca-app-pub-3940256099942544/9214589741",
+    "interstitialId": "ca-app-pub-3940256099942544/1033173712"
+  }
+}

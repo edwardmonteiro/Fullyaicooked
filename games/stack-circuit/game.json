@@ -1,0 +1,13 @@
+{
+  "id": "stack-circuit",
+  "title": "Stack Circuit",
+  "description": "Four skyline challenges. Fight the wind, slow time, and build a perfect tower.",
+  "category": "Puzzle",
+  "color": "#d9ff59",
+  "controls": "Space drop · Hold ↓ for Focus",
+  "orientation": "portrait",
+  "audience": "general",
+  "entry": "index.html",
+  "cover": "cover.webp",
+  "order": 3
+}

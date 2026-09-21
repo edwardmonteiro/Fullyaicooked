@@ -1,0 +1,15 @@
+node_modules/
+dist/
+android/.gradle/
+android/**/build/
+android/local.properties
+android/app/src/main/assets/site/
+*.keystore
+*.jks
+*.apk
+*.aab
+.sites-runtime/
+.env*
+!*.example
+.DS_Store
+

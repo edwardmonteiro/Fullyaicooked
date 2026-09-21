@@ -1,0 +1,307 @@
+{
+  "generation": {
+    "tool": "built-in image_gen",
+    "conceptFirst": true,
+    "inspectedWith": "view_image",
+    "retries": 0
+  },
+  "concept": {
+    "file": "modern-arcade-concept.webp",
+    "width": 1619,
+    "height": 971,
+    "screenOrder": [
+      "Starfall Patrol",
+      "Sunset Rider",
+      "Sky Bastion"
+    ],
+    "hudHeightPx": 64,
+    "footerHeightPx": 54
+  },
+  "sprites": {
+    "file": "../../games/shared/mobile/sprites.webp",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "cellWidth": 418,
+    "cellHeight": 418,
+    "columns": 3,
+    "rows": 3,
+    "alpha": "Genuine transparent background; 1,096,834 fully transparent pixels.",
+    "sourceRectFormat": "[x,y,width,height]; tight core bounds use alpha >64. Add small draw padding for glows if desired.",
+    "entries": [
+      {
+        "name": "playerShip",
+        "row": 0,
+        "column": 0,
+        "cell": [
+          0,
+          0,
+          418,
+          418
+        ],
+        "core": [
+          70,
+          67,
+          301,
+          302
+        ],
+        "rotation": 0
+      },
+      {
+        "name": "enemyDrone",
+        "row": 0,
+        "column": 1,
+        "cell": [
+          418,
+          0,
+          418,
+          418
+        ],
+        "core": [
+          500,
+          114,
+          254,
+          227
+        ],
+        "rotation": 3.141592653589793,
+        "note": "Art nose reads upward. Rotate PI when incoming."
+      },
+      {
+        "name": "bossShip",
+        "row": 0,
+        "column": 2,
+        "cell": [
+          836,
+          0,
+          418,
+          418
+        ],
+        "core": [
+          840,
+          56,
+          381,
+          319
+        ],
+        "rotation": 3.141592653589793,
+        "note": "Art nose reads upward. Rotate PI when incoming."
+      },
+      {
+        "name": "motorcycle",
+        "row": 1,
+        "column": 0,
+        "cell": [
+          0,
+          418,
+          418,
+          418
+        ],
+        "core": [
+          144,
+          494,
+          151,
+          328
+        ],
+        "rotation": 0
+      },
+      {
+        "name": "amberCar",
+        "row": 1,
+        "column": 1,
+        "cell": [
+          418,
+          418,
+          418,
+          418
+        ],
+        "core": [
+          537,
+          460,
+          179,
+          352
+        ],
+        "rotation": 0
+      },
+      {
+        "name": "coralPickup",
+        "row": 1,
+        "column": 2,
+        "cell": [
+          836,
+          418,
+          418,
+          418
+        ],
+        "core": [
+          940,
+          465,
+          184,
+          352
+        ],
+        "rotation": 0
+      },
+      {
+        "name": "cityCluster",
+        "row": 2,
+        "column": 0,
+        "cell": [
+          0,
+          836,
+          418,
+          418
+        ],
+        "core": [
+          47,
+          888,
+          356,
+          303
+        ],
+        "rotation": 0
+      },
+      {
+        "name": "shieldOrb",
+        "row": 2,
+        "column": 1,
+        "cell": [
+          418,
+          836,
+          418,
+          418
+        ],
+        "core": [
+          515,
+          931,
+          224,
+          221
+        ],
+        "suggestedGlowCrop": [
+          483,
+          897,
+          289,
+          292
+        ],
+        "rotation": 0
+      },
+      {
+        "name": "energyCrystal",
+        "row": 2,
+        "column": 2,
+        "cell": [
+          836,
+          836,
+          418,
+          418
+        ],
+        "core": [
+          964,
+          905,
+          134,
+          280
+        ],
+        "rotation": 0
+      }
+    ]
+  },
+  "scenery": {
+    "file": "../../games/shared/mobile/scenery.webp",
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "panels": [
+      {
+        "name": "space",
+        "crop": [
+          0,
+          0,
+          512,
+          1024
+        ],
+        "note": "Dark quiet middle, restrained edge planet, nebula and far asteroids."
+      },
+      {
+        "name": "desertRoad",
+        "crop": [
+          512,
+          0,
+          512,
+          1024
+        ],
+        "roadLocalX": [
+          102,
+          411
+        ],
+        "laneCentersLocalX": [
+          148,
+          256,
+          364
+        ],
+        "laneCentersNormalized": [
+          0.2890625,
+          0.5,
+          0.7109375
+        ],
+        "note": "Use image road lane center positions for collision and steering. Asphalt is constant width; visible vehicles belong in sprite pass."
+      },
+      {
+        "name": "duskCity",
+        "crop": [
+          1024,
+          0,
+          512,
+          1024
+        ],
+        "launcherBasesLocal": [
+          [
+            102,
+            936
+          ],
+          [
+            256,
+            936
+          ],
+          [
+            410,
+            936
+          ]
+        ],
+        "launcherBarrelsApproxLocal": [
+          [
+            117,
+            861
+          ],
+          [
+            263,
+            861
+          ],
+          [
+            416,
+            861
+          ]
+        ],
+        "note": "Three launchers baked into low city backdrop. Keep playable sky above roughly y=780; far coastal skyline and sea lower down."
+      }
+    ]
+  },
+  "designNotes": {
+    "palette": {
+      "spaceCenter": "#0c122b",
+      "roadAsphalt": "#363334",
+      "desertSand": "#f9bd87",
+      "skyUpper": "#162b5b",
+      "skyMiddle": "#495698",
+      "hud": "#101a2c",
+      "hudText": "#e3ebf7",
+      "accentTeal": "#58bfcb",
+      "accentCoral": "#f38b74"
+    },
+    "typography": "Compact uppercase sans-serif HUD labels, tabular bold score, tracked small footer hints.",
+    "controls": "Small rounded-square pause button with two filled light bars. Coral filled heart lives.",
+    "art": "Soft painted tangible 3D material depth; no pixel art. Minimal restrained glows.",
+    "implementation": "All HUD, text, scores, controls remain code native. Atlases contain only production art. Render animated effects and collisions separately.",
+    "differences": "Coral ship art rendered nose-up; rotate 180 degrees. Production road width is about 62% of panel width; align lanes to given centers."
+  },
+  "prompts": {
+    "concept": "Use case: ui-mockup.\nAsset type: concept authority sheet for three complete HTML5 solo mobile arcade games.\nCreate one polished image, a landscape sheet with exactly THREE full portrait game screens side by side, each roughly 390 x 700 in proportion, identical size, with only a very thin dark gutter between them. No phones, hardware, perspective, or surrounding board. Entire full screens are visible from top edge to bottom edge. They should look like three superb modern mobile arcade games with Atari-simple controls, connected by one art direction: tasteful illustrated surfaces, rounded tangible stylized 3D sprites, subtle material depth, restrained glows, crisp minimal typography, no pixel art.\nThe left screen is STARFALL PATROL: top-down space shooter. Quiet deep ink-indigo space with a few fine stars, broad subtle violet nebula, one very faint planet cropped along an edge. Teal player spaceship facing straight upward near lower middle, coral enemy drones facing downward in the upper half, a few cyan shots, one coral incoming shot. Top thin dark HUD has a small bold game title at left, white score 02480 below or alongside, three small coral heart lives and a clean pause icon at right. Nearly all screen is playable field. Narrow bottom strip text: \u201cDRAG TO FLY \u00b7 AUTO FIRE\u201d.\nThe center screen is SUNSET RIDER: top-down three-lane motorcycle dodger. Camera is true orthographic overhead, no perspective vanishing point. Perfectly straight uninterrupted charcoal asphalt road through warm apricot desert, three equal lanes with slim dashed cream lane dividers. Road occupies 72 percent of the screen width and reaches top and bottom. Dusty salmon sand, a few tasteful cactus, rock and scrub shapes strictly in side shoulders. Teal motorcycle helmet and teal bodywork near bottom middle, facing exactly upward; an amber car and coral pickup as sparse obstacles higher up in different lanes. Top thin HUD integrated into a warm dark strip with small bold title, score 01540, three small coral hearts and pause icon. Narrow bottom text: \u201cSWIPE TO STEER\u201d.\nThe right screen is SKY BASTION: missile defense. Atmospheric smooth dusk blue/violet sky, one subtle moon, refined soft cloud silhouettes near edges. The lower fifth contains a compact futuristic coastal city in navy and muted lavender, a few warm illuminated windows and three low missile batteries. Most sky remains uncluttered and playable. Two fine coral incoming missile trails angle downwards from above, two fine cyan intercept trails rise toward one beautiful restrained translucent cyan shockwave burst. Thin dark indigo top HUD with small bold title, score 03200, three small coral hearts and pause icon. Narrow bottom action strip: \u201cTAP TO INTERCEPT\u201d.\nThe three games have a consistent HUD typography, edge spacing, subtle icon weight and footer proportions. Keep HUD minimal and legible, almost all viewport is actual game field. Must show complete real gameplay compositions, not title screens or cards. This is a production-implementable interface reference: separable background and sprite art, code-native readable UI and controls. Exact game titles and hint text above, no extra text. No devices, marketing headings, badges, watermarks, photorealism, pixel art, excessive bloom or glossy casino effects.",
+    "sprites": "Use case: stylized-concept.\nAsset type: production transparent sprite atlas for modern mobile arcade games.\nInput image is a REFERENCE IMAGE for style and palette only, not an edit target. Extract its sophisticated tangible illustrated game-art style: soft painted 3D material depth, clean silhouettes, muted navy shadows, teal player assets and coral enemy assets, restrained highlights, no pixel art.\nCreate a single square 1536 x 1536 sprite atlas, EXACTLY 3 COLUMNS by 3 ROWS, equal invisible square cells. All nine objects isolated on a genuinely transparent alpha background. No colored backdrop, no checkerboard drawn into image, no grid lines, no numbers, no text. Keep every object centered in its own cell with at least 18% empty transparent padding on every side; no part, exhaust, glow, or shadow may cross into an adjacent cell. Each object occupies around 60% of its cell and is cleanly separated. Orthographic top-down camera for the six vehicles, no perspective lean.\nTop row:\n1. One detailed aerodynamic teal-and-ivory player spaceship facing exactly UP. Compact symmetrical sweeping wings, dark cockpit, twin restrained engine detail. No beam or long exhaust.\n2. One compact coral enemy drone spacecraft facing exactly DOWN. Clearly nose down, dark oval cockpit, small symmetrical side thrusters. No beam, no exhaust.\n3. One larger wide coral-and-navy boss spacecraft facing exactly DOWN, intimidating broad armored symmetrical wings, three cockpit details. No beam or exhaust.\nMiddle row:\n1. A true top-down black sport motorcycle with teal bodywork and a teal-helmet rider, facing exactly UP; compact silhouette, both wheels visible at front and back. Match the reference motorcycle.\n2. One warm amber compact four-door car seen exactly from overhead, facing UP, dark windscreen and back window, subtle metal trim, all body inside cell.\n3. One coral pickup truck seen exactly from overhead, facing UP, dark windshield, visible cargo bed at bottom, tiny tasteful cargo crates inside bed.\nBottom row:\n1. A small compact futuristic navy/lavender city-building cluster in FRONT ELEVATION, three or four charming buildings of varied height with warm yellow window dots, transparent between buildings and around perimeter. Buildings grounded together; no sky, ground or background rectangle.\n2. A cyan translucent protective shield orb pickup: polished glass sphere with one simple white shield emblem inside and a restrained cyan halo, no lettering.\n3. A faceted warm gold energy crystal pickup, a single tangible vertical jewel with clean golden highlights and warm amber edges, no lettering.\nAvoid photorealism, excessive glow, broad cast shadow, multiple views of an object, embedded labels, composition of a gameplay screen, uneven spacing. Actual transparent RGBA background is mandatory. Keep production sprites separable and collision silhouettes easy to read.",
+    "scenery": "Use case: stylized-concept.\nAsset type: production background scenery atlas for three mobile arcade games.\nInput image is a STYLE REFERENCE ONLY. Create a new image containing scenery only, matching its sophisticated painted modern mobile-game environment art: deep color, atmospheric depth, restrained fine texture, clean collision play areas.\nCreate a landscape image with EXACTLY THREE EQUAL-WIDTH full-height portrait panels edge-to-edge, no gutters, no borders. Requested size 1536 px wide \u00d7 1024 px high so each of the three panels is 512 \u00d7 1024. The division is exactly at 1/3 and 2/3 of image width. No overlaps between scenes. No game HUD, no text, no icons, no score, no hearts, no buttons. Absolutely no vehicles, spaceships, motorcycles, enemies, lasers, missiles, explosions, pickups or sprites. These will be placed by code later.\nLEFT THIRD: quiet deep indigo outer space like the left reference screen. Fine sparse stars, broad soft violet nebula drifting mostly along the lower-left and right edges, a cropped softly illuminated blue-violet planet at the extreme upper-left, a few tiny far-away asteroids strictly along the extreme side edges. Keep the middle 70 percent of the panel dark and legible, with no large stars, no foreground obstacles, no bright central nebula. Full height environment with no horizon and no black rectangle.\nMIDDLE THIRD: true orthographic directly overhead view of an EMPTY perfectly straight vertical charcoal asphalt road through warm apricot desert, no perspective vanishing point. Road uninterrupted from very top to very bottom of the image, centered in this middle panel, occupying exactly 72 percent of panel width. Three equal-width lanes, two restrained warm off-white dashed lane dividers at the exact thirds of the asphalt. Narrow cream edge lines. Warm apricot sand side shoulders each 14 percent panel width. Detailed tasteful small cactus, rocks and scrub strictly in shoulders and absolutely NEVER over the asphalt. No cars or motorcycle. Keep the asphalt clean and quiet, subtle fine road texture only. Road width is CONSTANT top to bottom. Its top and bottom can join for vertical scrolling.\nRIGHT THIRD: quiet blue-violet dusk sky over a low futuristic coastal city as in right reference screen. Upper 75 percent is usable sky: soft dark blue at top becoming muted lavender lower down, one small soft moon in upper right, thin subtle clouds near side edges only. Bottom 25 percent contains a distant lavender sea horizon, small dark island silhouettes, and an understated compact navy futuristic coastal city at the bottom with small warm illuminated windows. Keep the main central sky clear. In the very lowest 12 percent include THREE small symmetrical futuristic missile-launcher emplacements resting on the city promenade at panel x positions 20 percent, 50 percent, 80 percent, with short dark navy twin barrels pointing up. No firing, effects or missiles. The city and launcher emplacements must remain LOW: nothing taller than the bottom 20 percent of panel. The image is a usable quiet game background, not a poster illustration.\nExact equal widths are crucial for runtime cropping. Preserve the navy / teal / coral / apricot / lavender palette from reference. No pixel art, no noisy textures, no logos, no title or UI, no unwanted decorative objects in play areas."
+  }
+}

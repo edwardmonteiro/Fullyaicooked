@@ -1,0 +1,41 @@
+plugins { id 'com.android.application' }
+def ads = new groovy.json.JsonSlurper().parse(file('../../monetization.json')).android
+def live = ads.mode == 'live'
+if (!(ads.mode in ['test','live'])) throw new GradleException('Android ad mode must be test or live.')
+if (!(ads.applicationId ==~ /ca-app-pub-\d{16}~\d{10}/) || !([ads.bannerId,ads.interstitialId].every { it ==~ /ca-app-pub-\d{16}\/\d{10}/ })) throw new GradleException('Invalid AdMob identifier format.')
+if (live && [ads.applicationId, ads.bannerId, ads.interstitialId].any { !it || it.contains('3940256099942544') }) throw new GradleException('Live ads require your own AdMob IDs.')
+if (!live && [ads.applicationId, ads.bannerId, ads.interstitialId].any { !it.contains('3940256099942544') }) throw new GradleException('Test mode must use Google demo ad IDs.')
+android {
+    namespace 'com.fullyaicooked.arcade'
+    compileSdk 36
+    buildToolsVersion '36.0.0'
+    defaultConfig {
+        applicationId 'com.fullyaicooked.arcade'
+        minSdk 23
+        targetSdk 36
+        versionCode 8
+        versionName '1.7.0'
+        manifestPlaceholders = [admobAppId: ads.applicationId]
+        buildConfigField 'boolean', 'TEST_ADS', String.valueOf(!live)
+        buildConfigField 'String', 'BANNER_ID', '"' + ads.bannerId + '"'
+        buildConfigField 'String', 'INTERSTITIAL_ID', '"' + ads.interstitialId + '"'
+    }
+    buildFeatures { buildConfig true }
+    compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
+    buildTypes {
+        debug {
+            applicationIdSuffix '.preview'
+            versionNameSuffix '-preview'
+            manifestPlaceholders = [admobAppId:'ca-app-pub-3940256099942544~3347511713']
+            buildConfigField 'boolean', 'TEST_ADS', 'true'
+            buildConfigField 'String', 'BANNER_ID', '"ca-app-pub-3940256099942544/9214589741"'
+            buildConfigField 'String', 'INTERSTITIAL_ID', '"ca-app-pub-3940256099942544/1033173712"'
+        }
+        release { minifyEnabled false }
+    }
+}
+dependencies {
+    implementation 'androidx.webkit:webkit:1.14.0'
+    implementation 'com.google.android.gms:play-services-ads:25.4.0'
+    implementation 'com.google.android.ump:user-messaging-platform:4.0.0'
+}

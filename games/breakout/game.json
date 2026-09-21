@@ -1,0 +1,13 @@
+{
+  "id": "breakout",
+  "title": "Breakout",
+  "description": "Dois muros, cinco bolas e rebotes precisos. Abra túneis e domine a raquete quando ela encolher.",
+  "category": "Clássicos de arcade",
+  "color": "#efa24b",
+  "controls": "Arraste a raquete, use as setas e pressione Espaço para sacar.",
+  "orientation": "portrait",
+  "audience": "general",
+  "entry": "index.html",
+  "cover": "cover.webp",
+  "order": 17
+}

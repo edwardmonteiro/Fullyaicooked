@@ -1,0 +1,13 @@
+{
+  "id": "pitfall",
+  "title": "Pitfall Tribute",
+  "description": "An independent Pitfall homage: 255 jungle screens, swinging vines, underground shortcuts and 32 treasures.",
+  "category": "2600 Tributes",
+  "color": "#cad080",
+  "controls": "← → move · ↑ ↓ climb · Space jump or release vine",
+  "orientation": "landscape",
+  "audience": "general",
+  "entry": "index.html",
+  "order": 9,
+  "cover": "cover.webp"
+}
